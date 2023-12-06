@@ -1,0 +1,21 @@
+<%- include ('./partials/header') %>
+
+<h3> List of Asteroids </h3>
+
+
+<% dates.forEach((date)=> { %>
+    <br>
+    <b><%= date %></b>
+    <br>
+    <% asteroidsData[date].forEach((asteroid) => { %>
+        <h3>Name:</h3>
+    <%= asteroid.name %> 
+   <% }); %>
+<% }); %>
+
+    <% userAddedAsteroids.forEach((asteroid)=> {  %>
+    <h3>Name:</h3>
+    <%= asteroid.name %>
+    <% }); %>
+
+<%- include ('./partials/footer') %>

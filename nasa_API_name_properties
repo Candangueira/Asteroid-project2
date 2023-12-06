@@ -1,0 +1,11 @@
+links: [Object],
+      id: '3986699',
+      neo_reference_id: '3986699',
+      name: '(2020 BC)',
+      nasa_jpl_url: 'http://ssd.jpl.nasa.gov/sbdb.cgi?sstr=3986699',
+      absolute_magnitude_h: 26.2,
+      estimated_diameter: [Object],
+      is_potentially_hazardous_asteroid: false,
+      close_approach_data: [Array],
+      is_sentry_object: false
+

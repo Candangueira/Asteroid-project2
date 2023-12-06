@@ -1,0 +1,26 @@
+<%- include ('./partials/header') %>
+
+<form id="new-asteroid" action="/asteroids" method="POST">
+<br>
+    <label>Name:</label>
+    <input type="text" name="name">
+<br>
+    <label>Absolute Magnitude:</label>
+    <input type="number" step="0.01" name="magnitude">
+<br>
+    <label>Estimated Diameter:</label>
+    <input type="number" step="0.01" name="diameter">
+<br>
+    <label>Is potentially hazardous?</label>
+    <select name="hazardous">
+        <option value="true">Yes</option>
+        <option value="false">No</option>   
+    </select>
+<br>
+    <label>Date of approach</label>
+    <input type="date" name="date-new">
+<br>
+    <input type="submit" value="Add Asteroid">
+</form>
+
+<%- include ('./partials/footer') %>
