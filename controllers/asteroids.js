@@ -2,6 +2,7 @@ const Asteroid = require('../models/asteroid');
 
 module.exports = {
     showAll,
+    show,
     new: newAsteroid,
     create: createAsteroid,
     date,
@@ -11,10 +12,12 @@ async function date(req, res) {
     res.render('date.ejs');
 }
 
+// Add a form for a new asteroid //
 async function newAsteroid(req, res) {
     res.render('new-asteroid.ejs');
 }
 
+// Create and Post the new Asteroid //
 async function createAsteroid(req, res) {
     try {
         const newAsteroid = await Asteroid.create(req.body);
@@ -30,8 +33,11 @@ async function createAsteroid(req, res) {
 // API NASA Asteroids - NeoWs:
 
 async function showAll(req, res, next) {
+    // adds the new asteroid to the datebase //
     const userAddedAsteroids = await Asteroid.find({});
     console.log('DATABASE:' + userAddedAsteroids);
+
+    // query string
 
     const asteroids = fetch(
         'https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-01-01&end_date=2024-01-02&api_key=DEMO_KEY'
@@ -57,4 +63,12 @@ async function showAll(req, res, next) {
             console.log('error 404 catch');
             console.log(error);
         });
+}
+
+async function show(req, res, next) {
+    const asteroid = await Asteroid.findById(req.params.id);
+    console.log(asteroid);
+    res.render('single-asteroid.ejs', {
+        asteroid,
+    });
 }
