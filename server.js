@@ -4,7 +4,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-require('dotenv').config();
+// --- OAUTH ---
+// strategy helps to retrieve the information from Google
+// passport is the authentication
+//
+const expressSession = require('express-session');
+const passport = require('passport');
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 // connect to the database AFTER the config vars are processed
 require('./config/database');
 
@@ -16,6 +25,22 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(
+    expressSession({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+    })
+);
+
+// saves the information in the session //
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function (req, res, next) {
+    res.locals.user = req.user;
+    next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,4 +1,3 @@
-// const { text } = require('express');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -24,6 +23,7 @@ const asteroidSchema = new Schema(
         },
         date: {
             type: Date,
+            required: true,
         },
     },
     {

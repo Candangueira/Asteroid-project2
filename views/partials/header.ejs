@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <nav>
+        <% if (user) { %>
+            <a href="/logout">LOG OUT</a>
+            <% } else { %>
+                <a href="/auth/google" class="login">LOG IN&nbsp;</a>
+                <% } %>
+    </nav>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
@@ -9,5 +16,5 @@
 
 <body>
     <a href="/">Home</a>
-    <a href="/date">Go to Asteroids</a>
+    <a href="/asteroids/date">Go to Asteroids</a>
     <a href="/asteroids/add-asteroid">Add Asteroid</a>

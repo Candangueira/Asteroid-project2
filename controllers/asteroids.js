@@ -4,7 +4,12 @@ module.exports = {
     showAll,
     new: newAsteroid,
     create: createAsteroid,
+    date,
 };
+
+async function date(req, res) {
+    res.render('date.ejs');
+}
 
 async function newAsteroid(req, res) {
     res.render('new-asteroid.ejs');
@@ -13,9 +18,8 @@ async function newAsteroid(req, res) {
 async function createAsteroid(req, res) {
     try {
         const newAsteroid = await Asteroid.create(req.body);
-        res.redirect('/asteroids', {
-            newAsteroid,
-        });
+
+        res.redirect('/asteroids');
     } catch (err) {
         console.log(err);
         res.render('new-asteroid.ejs', { errorMsg: err.message });
@@ -26,11 +30,12 @@ async function createAsteroid(req, res) {
 // API NASA Asteroids - NeoWs:
 
 async function showAll(req, res, next) {
+    const userAddedAsteroids = await Asteroid.find({});
+    console.log('DATABASE:' + userAddedAsteroids);
+
     const asteroids = fetch(
         'https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-01-01&end_date=2024-01-02&api_key=DEMO_KEY'
     );
-    const userAddedAsteroids = await Asteroid.find({});
-    console.log(userAddedAsteroids);
 
     asteroids
         .then((res) => {
@@ -49,7 +54,7 @@ async function showAll(req, res, next) {
             });
         })
         .catch((error) => {
-            console.log('error 404');
+            console.log('error 404 catch');
             console.log(error);
         });
 }
