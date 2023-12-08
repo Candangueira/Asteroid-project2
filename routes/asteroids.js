@@ -4,8 +4,6 @@ const asteroidController = require('../controllers/asteroids');
 
 router.get('/', asteroidController.showAll);
 
-router.get('/date', asteroidController.date);
-
 router.get('/add-asteroid', asteroidController.new);
 
 router.get('/:id', asteroidController.show);

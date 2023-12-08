@@ -5,12 +5,7 @@ module.exports = {
     show,
     new: newAsteroid,
     create: createAsteroid,
-    date,
 };
-
-async function date(req, res) {
-    res.render('date.ejs');
-}
 
 // Add a form for a new asteroid //
 async function newAsteroid(req, res) {
@@ -53,6 +48,14 @@ async function showAll(req, res, next) {
 
             const dates = Object.keys(listOfAsteroids);
 
+            // iterate through NASA asteroids //
+
+            dates.forEach((date) => {
+                listOfAsteroids[date].forEach((asteroid) => {
+                    console.log(asteroid.id);
+                });
+            });
+
             res.render('asteroid.ejs', {
                 userAddedAsteroids,
                 dates,
@@ -67,7 +70,6 @@ async function showAll(req, res, next) {
 
 async function show(req, res, next) {
     const asteroid = await Asteroid.findById(req.params.id);
-    console.log(asteroid);
     res.render('single-asteroid.ejs', {
         asteroid,
     });
