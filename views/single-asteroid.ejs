@@ -11,7 +11,7 @@
     </p>
     <p>Day it will be closest to the Earth: <%= asteroid.date.getUTCMonth() + 1 +"/"+asteroid.date.getUTCDate()+"/"+asteroid.date.getUTCFullYear(); %></p>
 
-    <a href="/delete">Delete</a>
+    <button><a href="/asteroids/<%=asteroid._id%>/delete">Delete</a></button>
 </section>
 
 

@@ -5,11 +5,23 @@ module.exports = {
     show,
     new: newAsteroid,
     create: createAsteroid,
+    delete: deleteAsteroid,
+    find: findAsteroid,
 };
 
 // Add a form for a new asteroid //
 async function newAsteroid(req, res) {
-    res.render('new-asteroid.ejs');
+    try {
+        res.render('new-asteroid.ejs');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/', { errorMsg: err.message });
+    }
+}
+// WORKING HERE //
+// Find Asteroid to delete //
+async function findAsteroid(req, res) {
+    res.render('confirm-delete');
 }
 
 // Create and Post the new Asteroid //
@@ -22,6 +34,15 @@ async function createAsteroid(req, res) {
         console.log(err);
         res.render('new-asteroid.ejs', { errorMsg: err.message });
     }
+}
+
+async function deleteAsteroid(req, res) {
+    const userAsteroid = await Asteroid.findById({
+        'asteroid._id': req.params.id,
+    });
+    userAsteroid.remove(req.params.id);
+    await userAsteroid.save();
+    res.redirect('/asteroids');
 }
 
 // shows a list of asteroids near to the earth.

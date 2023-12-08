@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm-delete</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete?</h1>
+    <form action="/asteroids/<%=asteroid._id%>?_method=DELETE" method="POST">
+        <a href="/asteroids/<%=asteroid._id%>">Cancel</a>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
