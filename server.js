@@ -4,16 +4,19 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
+const passport = require('passport');
 
 // --- OAUTH ---
 // strategy helps to retrieve the information from Google
 // passport is the authentication
 //
+
 const expressSession = require('express-session');
-const passport = require('passport');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
+    require('./config/database');
+    require('./config/passport');
 }
 // connect to the database AFTER the config vars are processed
 require('./config/database');

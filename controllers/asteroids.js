@@ -57,10 +57,10 @@ async function showAll(req, res, next) {
             const dates = Object.keys(listOfAsteroids);
 
             // iterate through NASA asteroids //
-
+            const nasaAsteroid = [];
             dates.forEach((date) => {
-                listOfAsteroids[date].forEach((nasaAsteroid) => {
-                    console.log(nasaAsteroid.id);
+                listOfAsteroids[date].forEach((asteroid) => {
+                    nasaAsteroid.push(asteroid); // check this one
                 });
             });
 
@@ -68,6 +68,7 @@ async function showAll(req, res, next) {
                 userAddedAsteroids,
                 dates,
                 asteroidsData: data.near_earth_objects,
+                nasaAsteroid,
             });
         })
         .catch((error) => {
