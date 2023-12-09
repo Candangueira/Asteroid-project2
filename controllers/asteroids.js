@@ -33,6 +33,8 @@ async function createAsteroid(req, res) {
     }
 }
 
+// CREATES PICTURES FOR A SINGLE ASTEROID //
+
 async function createPictures(req, res) {
     const asteroid = await Asteroid.findById(req.params.id);
     asteroid.pictures.push(req.body);
@@ -41,11 +43,11 @@ async function createPictures(req, res) {
     //  req.body.userAvatar = req.user.avatar;
 
     try {
-        res.redirect(`/asteroids/${req.params.id}`);
         await asteroid.save();
     } catch (err) {
         console.log(err);
     }
+    res.redirect(`/asteroids/${req.params.id}`);
 }
 
 // shows a list of asteroids near to the earth.
