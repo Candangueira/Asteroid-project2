@@ -40,9 +40,9 @@ async function showAll(req, res, next) {
     console.log('DATABASE:' + userAddedAsteroids);
 
     // query string
-
+    // req.query.initia
     const asteroids = fetch(
-        'https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-01-01&end_date=2024-01-02&api_key=DEMO_KEY'
+        `https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-01-01&end_date=2024-01-02&api_key=${process.env.NASA_API_KEY}`
     );
 
     asteroids
@@ -59,7 +59,7 @@ async function showAll(req, res, next) {
 
             dates.forEach((date) => {
                 listOfAsteroids[date].forEach((nasaAsteroid) => {
-                    console.log(nasaAsteroid._id);
+                    console.log(nasaAsteroid.id);
                 });
             });
 
@@ -85,14 +85,18 @@ async function show(req, res, next) {
 // WORKING HERE //
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
-    res.send('confirm-delete');
+    const asteroid = {
+        _id: 1,
+    };
+    res.render('confirm-delete.ejs', {
+        asteroid,
+    });
 }
 
 async function deleteAsteroid(req, res) {
-    const userAsteroid = await Asteroid.findById({
-        'asteroid._id': req.params.id,
-    });
-    userAsteroid.remove(req.params.id);
-    await userAsteroid.save();
+    const userAsteroid = await Asteroid.findById(req.params.id);
+    userAsteroid.delete;
+    // userAsteroid.remove(req.params.id); // check
+    // await userAsteroid.save(); // check
     res.redirect('/asteroids');
 }
