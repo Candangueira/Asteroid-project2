@@ -18,11 +18,6 @@ async function newAsteroid(req, res) {
         res.redirect('/', { errorMsg: err.message });
     }
 }
-// WORKING HERE //
-// Find Asteroid to delete //
-async function findAsteroid(req, res) {
-    res.render('confirm-delete');
-}
 
 // Create and Post the new Asteroid //
 async function createAsteroid(req, res) {
@@ -34,15 +29,6 @@ async function createAsteroid(req, res) {
         console.log(err);
         res.render('new-asteroid.ejs', { errorMsg: err.message });
     }
-}
-
-async function deleteAsteroid(req, res) {
-    const userAsteroid = await Asteroid.findById({
-        'asteroid._id': req.params.id,
-    });
-    userAsteroid.remove(req.params.id);
-    await userAsteroid.save();
-    res.redirect('/asteroids');
 }
 
 // shows a list of asteroids near to the earth.
@@ -72,8 +58,8 @@ async function showAll(req, res, next) {
             // iterate through NASA asteroids //
 
             dates.forEach((date) => {
-                listOfAsteroids[date].forEach((asteroid) => {
-                    console.log(asteroid.id);
+                listOfAsteroids[date].forEach((nasaAsteroid) => {
+                    console.log(nasaAsteroid._id);
                 });
             });
 
@@ -94,4 +80,19 @@ async function show(req, res, next) {
     res.render('single-asteroid.ejs', {
         asteroid,
     });
+}
+
+// WORKING HERE //
+// Find Asteroid to delete //
+async function findAsteroid(req, res) {
+    res.send('confirm-delete');
+}
+
+async function deleteAsteroid(req, res) {
+    const userAsteroid = await Asteroid.findById({
+        'asteroid._id': req.params.id,
+    });
+    userAsteroid.remove(req.params.id);
+    await userAsteroid.save();
+    res.redirect('/asteroids');
 }
