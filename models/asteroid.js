@@ -2,6 +2,22 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const picturesSchema = new Schema(
+    {
+        link: {
+            type: String,
+            required: false,
+        },
+        description: {
+            type: String,
+            required: false,
+        },
+    },
+    {
+        timestamps: true,
+    }
+);
+
 const asteroidSchema = new Schema(
     {
         name: {
@@ -25,6 +41,7 @@ const asteroidSchema = new Schema(
             type: Date,
             required: true,
         },
+        pictures: [picturesSchema],
     },
     {
         timestamps: true,

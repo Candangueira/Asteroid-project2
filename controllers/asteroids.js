@@ -1,4 +1,3 @@
-const asteroid = require('../models/asteroid');
 const Asteroid = require('../models/asteroid');
 
 module.exports = {
@@ -8,6 +7,7 @@ module.exports = {
     create: createAsteroid,
     delete: deleteAsteroid,
     find: findAsteroid,
+    createPictures,
 };
 
 // Add a form for a new asteroid //
@@ -24,11 +24,27 @@ async function newAsteroid(req, res) {
 async function createAsteroid(req, res) {
     try {
         const newAsteroid = await Asteroid.create(req.body);
-
+        newAsteroid.pictures.push(req.body);
+        // console.log(newAsteroid);
         res.redirect('/asteroids');
     } catch (err) {
         console.log(err);
         res.render('new-asteroid.ejs', { errorMsg: err.message });
+    }
+}
+
+async function createPictures(req, res) {
+    const asteroid = await Asteroid.findById(req.params.id);
+    asteroid.pictures.push(req.body);
+    //  req.body.user = req.user._id;
+    //  req.body.userName = req.user.name;
+    //  req.body.userAvatar = req.user.avatar;
+
+    try {
+        res.redirect(`/asteroids/${req.params.id}`);
+        await asteroid.save();
+    } catch (err) {
+        console.log(err);
     }
 }
 
@@ -84,7 +100,6 @@ async function show(req, res, next) {
     });
 }
 
-// WORKING HERE //
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
     const userAsteroid = await Asteroid.findById(req.params.id);

@@ -11,6 +11,26 @@
     </p>
     <p>Day it will be closest to the Earth: <%= asteroid.date.getUTCMonth() + 1 +"/"+asteroid.date.getUTCDate()+"/"+asteroid.date.getUTCFullYear(); %></p>
 
+    <!-- Show the images of the asteroids -->
+
+    <%asteroid.pictures.forEach((picture)=> { %>
+    <img src="<%= picture.link %>">
+    <p><%= picture.description %></p>
+    <% }); %>
+
+    <!-- Adds the picture and description for a specific asteroid -->
+
+    <form id="add-img-description" method="POST" action="/asteroids/<%=asteroid._id%>">
+        <label>Picture's URL</label>
+            <input type="url" name="link">
+    <br>
+        <label>Description</label>
+            <textarea name="description"></textarea>
+            <button type="submit" name="add-url-description">submit</button>
+        <br>
+      
+    </form>
+
     <a href="/asteroids/<%=asteroid._id%>/delete">Delete</a>
 </section>
 

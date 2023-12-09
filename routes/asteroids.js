@@ -2,13 +2,9 @@ const express = require('express');
 const router = express.Router();
 const asteroidController = require('../controllers/asteroids');
 
-//- CREATE ROUTES -// ----------------------
+//- CREATE ATEROIDS ROUTES -// ----------------------
 
 router.get('/add-asteroid', asteroidController.new);
-// router.get('/add-asteroid', (req, res) => {
-//     // TEST CHECK IF CONNECTS
-//     res.send('ok');
-// });
 
 router.post('/', asteroidController.create);
 
@@ -25,3 +21,7 @@ router.delete('/:id', asteroidController.delete);
 router.get('/:id/delete', asteroidController.find);
 
 module.exports = router;
+
+// - CREATE PICTURES ROUTE - //
+
+router.post('/:id', asteroidController.createPictures);
