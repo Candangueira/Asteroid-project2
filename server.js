@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-const passport = require('passport');
 
 // --- OAUTH ---
 // strategy helps to retrieve the information from Google
@@ -12,6 +11,7 @@ const passport = require('passport');
 //
 
 const expressSession = require('express-session');
+const passport = require('passport');
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
@@ -19,7 +19,6 @@ if (process.env.NODE_ENV !== 'production') {
     require('./config/passport');
 }
 // connect to the database AFTER the config vars are processed
-require('./config/database');
 
 const indexRouter = require('./routes/index');
 const asteroidsRouter = require('./routes/asteroids');

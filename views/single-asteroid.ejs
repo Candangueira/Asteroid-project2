@@ -16,9 +16,16 @@
     <%asteroid.pictures.forEach((picture)=> { %>
     <img src="<%= picture.link %>">
     <p><%= picture.description %></p>
+
+    <!-- Deletes the picture and description of a specific asteroid -->
+    
+    <form action="/asteroids/<%= asteroid._id %>?_method=DELETE" method="POST">
+        <button type="submit">X</button>
+    </form>
+    
     <% }); %>
 
-    <!-- Adds the picture and description for a specific asteroid -->
+    <!-- Adds the picture and description of a specific asteroid -->
 
     <form id="add-img-description" method="POST" action="/asteroids/<%=asteroid._id%>">
         <label>Picture's URL</label>
@@ -27,9 +34,10 @@
         <label>Description</label>
             <textarea name="description"></textarea>
             <button type="submit" name="add-url-description">submit</button>
-        <br>
-      
+    <br> 
     </form>
+
+   
 
     <a href="/asteroids/<%=asteroid._id%>/delete">Delete</a>
 </section>

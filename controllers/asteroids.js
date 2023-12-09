@@ -8,6 +8,7 @@ module.exports = {
     delete: deleteAsteroid,
     find: findAsteroid,
     createPictures,
+    deletePictures,
 };
 
 // Add a form for a new asteroid //
@@ -33,7 +34,7 @@ async function createAsteroid(req, res) {
     }
 }
 
-// CREATES PICTURES FOR A SINGLE ASTEROID //
+// CREATES PICTURES FOR A SINGLE ASTEROID // -------------------------------------
 
 async function createPictures(req, res) {
     const asteroid = await Asteroid.findById(req.params.id);
@@ -48,6 +49,19 @@ async function createPictures(req, res) {
         console.log(err);
     }
     res.redirect(`/asteroids/${req.params.id}`);
+}
+
+// DELETES PICTURES FOR A SINGLE ASTEROID // ------------------------------------
+
+async function deletePictures(req, res) {
+    console.log('pictures id: ' + req.params.id);
+    const asteroid = await Asteroid.findOne({
+        'pictures._id': req.params.id,
+    });
+
+    await asteroid.save();
+    res.send('deletou');
+    res.redirect(`/asteroids/${asteroid._id}`);
 }
 
 // shows a list of asteroids near to the earth.
