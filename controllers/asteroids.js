@@ -1,3 +1,4 @@
+const asteroid = require('../models/asteroid');
 const Asteroid = require('../models/asteroid');
 
 module.exports = {
@@ -85,18 +86,16 @@ async function show(req, res, next) {
 // WORKING HERE //
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
-    const asteroid = {
-        _id: 1,
-    };
+    const userAsteroid = await Asteroid.findById(req.params.id);
+    // console.log(`Object selected to be deleted: ${userAsteroid}`);
     res.render('confirm-delete.ejs', {
-        asteroid,
+        asteroid: userAsteroid,
     });
 }
 
 async function deleteAsteroid(req, res) {
-    const userAsteroid = await Asteroid.findById(req.params.id);
-    userAsteroid.delete;
-    // userAsteroid.remove(req.params.id); // check
-    // await userAsteroid.save(); // check
+    // console.log(`Asteroid to be deleted: ${req.params.id}`);
+    await Asteroid.findByIdAndDelete(req.params.id);
+
     res.redirect('/asteroids');
 }
