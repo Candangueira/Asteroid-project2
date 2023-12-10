@@ -1,3 +1,4 @@
+const { query } = require('express');
 const Asteroid = require('../models/asteroid');
 
 module.exports = {
@@ -59,7 +60,7 @@ async function deletePictures(req, res) {
         'pictures._id': req.params.id,
     });
 
-    await asteroid.save();
+    // await asteroid.save();
     res.send('deletou');
     res.redirect(`/asteroids/${asteroid._id}`);
 }
@@ -70,12 +71,38 @@ async function deletePictures(req, res) {
 async function showAll(req, res, next) {
     // adds the new asteroid to the datebase //
     const userAddedAsteroids = await Asteroid.find({});
-    console.log('DATABASE:' + userAddedAsteroids);
 
-    // query string
-    // req.query.initia
+    // Creates variables for the date form. //
+    let initialDate = (await req.query.initialDate) ?? '2024-01-01';
+    let endDate = (await req.query.endDate) ?? '2024-01-01';
+
+    // Converts the date to ISO 8601 calendar date extended format. //
+    const convertedInitialDate = new Date(initialDate);
+    const convertedEndDate = new Date(endDate);
+
+    // If the date is valid applies into the API, if not, redirect with default values. //
+    if (
+        convertedEndDate.getTime() - convertedInitialDate.getTime() <
+        7 * 24 * 60 * 60 * 1000
+    ) {
+        console.log('DATE: Less than 7 days');
+    } else {
+        initialDate = '2024-01-01';
+        endDate = '2024-01-01';
+        res.redirect('/asteroids');
+    }
+
+    console.log('DATABASE:' + userAddedAsteroids);
+    console.log(
+        'QUERY STRING:' +
+            ' initial-date: ' +
+            initialDate +
+            ' end-date: ' +
+            endDate
+    );
+
     const asteroids = fetch(
-        `https://api.nasa.gov/neo/rest/v1/feed?start_date=2024-01-01&end_date=2024-01-02&api_key=${process.env.NASA_API_KEY}`
+        `https://api.nasa.gov/neo/rest/v1/feed?start_date=${initialDate}&end_date=${endDate}&api_key=${process.env.NASA_API_KEY}`
     );
 
     asteroids
@@ -89,10 +116,10 @@ async function showAll(req, res, next) {
             const dates = Object.keys(listOfAsteroids);
 
             // iterate through NASA asteroids //
-            const nasaAsteroid = [];
+
             dates.forEach((date) => {
                 listOfAsteroids[date].forEach((asteroid) => {
-                    nasaAsteroid.push(asteroid); // check this one
+                    // nasaAsteroid.push(asteroid); // check this one
                 });
             });
 
@@ -100,7 +127,6 @@ async function showAll(req, res, next) {
                 userAddedAsteroids,
                 dates,
                 asteroidsData: data.near_earth_objects,
-                nasaAsteroid,
             });
         })
         .catch((error) => {

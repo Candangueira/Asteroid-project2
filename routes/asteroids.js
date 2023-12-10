@@ -6,9 +6,9 @@ const asteroidController = require('../controllers/asteroids');
 
 router.post('/:id', asteroidController.createPictures);
 
-router.delete('/:id', asteroidController.deletePictures);
+// router.delete('/:id', asteroidController.deletePictures); // UNCOMMENT THIS ROUTE DELETE PICTURES
 
-//- CREATE ATEROIDS ROUTES -// ----------------------
+//- CREATE ASTEROIDS ROUTES -// ----------------------
 
 router.get('/add-asteroid', asteroidController.new);
 
@@ -22,7 +22,7 @@ router.get('/:id', asteroidController.show);
 
 //- DELETE ROUTES -// ----------------------
 
-// router.delete('/:id', asteroidController.delete);
+router.delete('/:id', asteroidController.delete);
 
 router.get('/:id/delete', asteroidController.find);
 
