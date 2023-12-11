@@ -1,29 +1,30 @@
 const express = require('express');
 const router = express.Router();
 const asteroidController = require('../controllers/asteroids');
+const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 // - CREATE PICTURES ROUTE - //
 
-router.post('/:id', asteroidController.createPictures);
+router.post('/:id', ensureLoggedIn, asteroidController.createPictures);
 
 // router.delete('/:id', asteroidController.deletePictures); // UNCOMMENT THIS ROUTE DELETE PICTURES
 
 //- CREATE ASTEROIDS ROUTES -// ----------------------
 
-router.get('/add-asteroid', asteroidController.new);
+router.get('/add-asteroid', ensureLoggedIn, asteroidController.new);
 
-router.post('/', asteroidController.create);
+router.post('/', ensureLoggedIn, asteroidController.create);
 
 //- SHOW ROUTES -// -------------------------
 
-router.get('/', asteroidController.showAll);
+router.get('/', ensureLoggedIn, asteroidController.showAll);
 
-router.get('/:id', asteroidController.show);
+router.get('/:id', ensureLoggedIn, asteroidController.show);
 
 //- DELETE ROUTES -// ----------------------
 
-router.delete('/:id', asteroidController.delete);
+router.delete('/:id', ensureLoggedIn, asteroidController.delete);
 
-router.get('/:id/delete', asteroidController.find);
+router.get('/:id/delete', ensureLoggedIn, asteroidController.find);
 
 module.exports = router;
