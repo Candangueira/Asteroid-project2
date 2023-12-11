@@ -3,23 +3,11 @@ const router = express.Router();
 const asteroidController = require('../controllers/asteroids');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
-// - CREATE PICTURES ROUTE - //
-
-router.post('/:id', ensureLoggedIn, asteroidController.createPictures);
-
-router.delete(`/:id/:picture_id/delete-img`, asteroidController.deletePictures);
-
 //- CREATE ASTEROIDS ROUTES -// ----------------------
 
 router.get('/add-asteroid', ensureLoggedIn, asteroidController.new);
 
 router.post('/', ensureLoggedIn, asteroidController.create);
-
-//- EDIT ASTEROIDS ROUTES -// ----------------------
-
-router.get('/:id/edit', ensureLoggedIn, asteroidController.edit);
-
-router.put('/:id', ensureLoggedIn, asteroidController.update);
 
 //- SHOW ROUTES -// -------------------------
 
@@ -27,10 +15,22 @@ router.get('/', ensureLoggedIn, asteroidController.showAll);
 
 router.get('/:id', ensureLoggedIn, asteroidController.show);
 
+//- EDIT ASTEROIDS ROUTES -// ----------------------
+
+router.get('/:id/edit', ensureLoggedIn, asteroidController.edit);
+
+router.put('/:id', ensureLoggedIn, asteroidController.update);
+
 //- DELETE ROUTES -// ----------------------
 
-router.delete('/:id/delete', ensureLoggedIn, asteroidController.delete);
+router.get('/:id/delete', ensureLoggedIn, asteroidController.find);
 
-router.get('/:id', ensureLoggedIn, asteroidController.find);
+router.delete('/:id', ensureLoggedIn, asteroidController.delete);
+
+// - CREATE PICTURES ROUTE - //
+
+router.post('/:id', ensureLoggedIn, asteroidController.createPictures);
+
+router.delete(`/:id/:picture_id/delete-img`, asteroidController.deletePictures);
 
 module.exports = router;

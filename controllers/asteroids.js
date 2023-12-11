@@ -177,6 +177,7 @@ async function updateAsteroid(req, res) {
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
     const userAsteroid = await Asteroid.findById(req.params.id);
+    console.log(userAsteroid);
     res.render('confirm-delete.ejs', {
         asteroid: userAsteroid,
     });
