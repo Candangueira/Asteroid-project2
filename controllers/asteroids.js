@@ -69,8 +69,8 @@ async function deletePictures(req, res) {
     res.redirect(`/asteroids/${asteroid._id}`);
 }
 
-// shows a list of asteroids near to the earth.
-// API NASA Asteroids - NeoWs:
+// shows a list of asteroids near to the earth. // -----------------------------------------------------------------------------
+// API NASA Asteroids - NeoWs: // ----------------------------------------------------------------------------------------------
 
 async function showAll(req, res, next) {
     // adds the new asteroid to the datebase //
@@ -96,18 +96,20 @@ async function showAll(req, res, next) {
         res.redirect('/asteroids');
     }
 
-    console.log('DATABASE:' + userAddedAsteroids);
-    console.log(
-        'QUERY STRING:' +
-            ' initial-date: ' +
-            initialDate +
-            ' end-date: ' +
-            endDate
-    );
+    // console.log('DATABASE:' + userAddedAsteroids);
+    // console.log(
+    //     'QUERY STRING:' +
+    //         ' initial-date: ' +
+    //         initialDate +
+    //         ' end-date: ' +
+    //         endDate
+    // );
 
     const asteroids = fetch(
         `https://api.nasa.gov/neo/rest/v1/feed?start_date=${initialDate}&end_date=${endDate}&api_key=${process.env.NASA_API_KEY}`
     );
+
+    // Filtering the promisse, to get the actual data // ------------------------------------------------
 
     asteroids
         .then((res) => {
@@ -138,24 +140,43 @@ async function showAll(req, res, next) {
             console.log(error);
         });
 }
+// -------------------------------------------------------------------------------------------------------
 
 async function show(req, res, next) {
-    if (req.params.id == null) {
-        res.send('no id ');
-    }
-    //     const nasaAsteroids = fetch(
-    //         `https://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=DEMO_KEY${process.env.NASA_API_KEY}`
-    //     );
-    //     console.log('nasa asteroid ID:' + req.params.id);
-    //     // pass to ejs
-    //     res.send('single NASA asteroid');
-    //     // res.render('nasa-single-asteroid.ejs', {});
-    // } else {
-    const asteroid = await Asteroid.findById(req.params.id);
-    res.render('single-asteroid.ejs', {
-        asteroid,
-    });
+    const asteroidId = await req.params.id;
+    // if (req.params.id == null) {
+    //     res.send('no id ');
     // }
+
+    // Single Asteroid finder API // ---------------------------------------------------------------------
+    const nasaAsteroids = fetch(
+        `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
+    );
+
+    nasaAsteroids
+        .then((res) => {
+            if (res.ok) return res.json();
+            throw new Error('404');
+        })
+        .then((data) => {
+            console.log(data);
+            const AsteroidData = data;
+            res.render('nasa-single-asteroid.ejs', {
+                asteroid: AsteroidData,
+            });
+        })
+        .catch((error) => {
+            console.log('error 404 catch');
+            console.log(error);
+        });
+
+    // Single Asteroid User finder // ---------------------------------------------------------------------
+    // } else {
+    // const asteroid = await Asteroid.findById(req.params.id);
+    // res.render('single-asteroid.ejs', {
+    //     asteroid,
+    // });
+    // // }
 }
 
 // edit asteroid //
@@ -177,7 +198,7 @@ async function updateAsteroid(req, res) {
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
     const userAsteroid = await Asteroid.findById(req.params.id);
-    console.log(userAsteroid);
+
     res.render('confirm-delete.ejs', {
         asteroid: userAsteroid,
     });
