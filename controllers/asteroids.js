@@ -10,6 +10,8 @@ module.exports = {
     find: findAsteroid,
     createPictures,
     deletePictures,
+    edit: editAsteroid,
+    update: updateAsteroid,
 };
 
 // Add a form for a new asteroid //
@@ -55,13 +57,15 @@ async function createPictures(req, res) {
 // DELETES PICTURES FOR A SINGLE ASTEROID // ------------------------------------
 
 async function deletePictures(req, res) {
-    // console.log('pictures id: ' + req.params.id);
-    const asteroid = await Asteroid.findOne({
-        'pictures._id': req.params.id,
+    const asteroid = await Asteroid.findById(req.params.id);
+    const pictureToKeep = asteroid.pictures.filter((picture) => {
+        // console.log(picture._id.toString());
+        return picture._id.toString() !== req.params.picture_id;
     });
+    asteroid.pictures = pictureToKeep;
 
-    // await asteroid.save();
-    res.send('deletou');
+    await asteroid.save();
+
     res.redirect(`/asteroids/${asteroid._id}`);
 }
 
@@ -136,23 +140,50 @@ async function showAll(req, res, next) {
 }
 
 async function show(req, res, next) {
+    if (req.params.id == null) {
+        res.send('no id ');
+    }
+    //     const nasaAsteroids = fetch(
+    //         `https://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=DEMO_KEY${process.env.NASA_API_KEY}`
+    //     );
+    //     console.log('nasa asteroid ID:' + req.params.id);
+    //     // pass to ejs
+    //     res.send('single NASA asteroid');
+    //     // res.render('nasa-single-asteroid.ejs', {});
+    // } else {
     const asteroid = await Asteroid.findById(req.params.id);
     res.render('single-asteroid.ejs', {
         asteroid,
     });
+    // }
+}
+
+// edit asteroid //
+async function editAsteroid(req, res) {
+    const userAsteroid = await Asteroid.findById(req.params.id);
+    res.render('edit.ejs', {
+        asteroids: userAsteroid,
+    });
+}
+
+async function updateAsteroid(req, res) {
+    const updatedAsteroids = await Asteroid.findByIdAndUpdate(
+        req.params.id,
+        req.body
+    );
+    res.redirect(`/asteroids/${req.params.id}`);
 }
 
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
     const userAsteroid = await Asteroid.findById(req.params.id);
-    // console.log(`Object selected to be deleted: ${userAsteroid}`);
     res.render('confirm-delete.ejs', {
         asteroid: userAsteroid,
     });
 }
 
 async function deleteAsteroid(req, res) {
-    // console.log(`Asteroid to be deleted: ${req.params.id}`);
+    console.log(`Asteroid to be deleted: ${req.params.id}`);
     await Asteroid.findByIdAndDelete(req.params.id);
 
     res.redirect('/asteroids');

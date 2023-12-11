@@ -1,0 +1,27 @@
+<%- include ('./partials/header') %>
+
+    <form id="new-asteroid" action="/asteroids/<%=asteroids.id%>?_method=PUT" method="POST">
+        <br>
+        <label>Name:</label>
+        <input type="text" name="name" value="<%= asteroids.name %>">
+        <br>
+        <label>Absolute Magnitude:</label>
+        <input type="number" step="0.01" name="magnitude" value="<%= asteroids.magnitude %>">
+        <br>
+        <label>Estimated Diameter:</label>
+        <input type="number" step="0.01" name="diameter" value="<%= asteroids.diameter %>">
+        <br>
+        <label>Is potentially hazardous?</label>
+        <select name="hazardous" value="<%= asteroids.hazardous %>">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <br>
+        <label>Date of approach</label>
+        <input type="date" name="date" value="<%= asteroids.date %>">
+        <br>
+
+        <input type="submit" value="Save Asteroid">
+    </form>
+
+    <%- include ('./partials/footer') %>

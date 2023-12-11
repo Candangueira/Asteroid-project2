@@ -7,13 +7,19 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 router.post('/:id', ensureLoggedIn, asteroidController.createPictures);
 
-router.delete('/:id/delete-img', asteroidController.deletePictures); // UNCOMMENT THIS ROUTE DELETE PICTURES
+router.delete(`/:id/:picture_id/delete-img`, asteroidController.deletePictures);
 
 //- CREATE ASTEROIDS ROUTES -// ----------------------
 
 router.get('/add-asteroid', ensureLoggedIn, asteroidController.new);
 
 router.post('/', ensureLoggedIn, asteroidController.create);
+
+//- EDIT ASTEROIDS ROUTES -// ----------------------
+
+router.get('/:id/edit', ensureLoggedIn, asteroidController.edit);
+
+router.put('/:id', ensureLoggedIn, asteroidController.update);
 
 //- SHOW ROUTES -// -------------------------
 

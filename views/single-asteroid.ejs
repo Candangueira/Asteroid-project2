@@ -20,7 +20,7 @@
 
     <!-- Deletes the picture and description of a specific asteroid -->
     
-    <form action="/asteroids/delete-img?_method=DELETE" method="POST">
+    <form action="/asteroids/<%=asteroid._id%>/<%=picture._id%>/delete-img?_method=DELETE" method="POST">
         <button type="submit">X</button>
     </form>
     
@@ -39,7 +39,7 @@
     </form>
 
    
-
+    <a href="/asteroids/<%=asteroid._id%>/edit">Edit</a>
     <a href="/asteroids/<%=asteroid._id%>/delete">Delete</a>
 </section>
 
