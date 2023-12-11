@@ -55,7 +55,7 @@ async function createPictures(req, res) {
 // DELETES PICTURES FOR A SINGLE ASTEROID // ------------------------------------
 
 async function deletePictures(req, res) {
-    console.log('pictures id: ' + req.params.id);
+    // console.log('pictures id: ' + req.params.id);
     const asteroid = await Asteroid.findOne({
         'pictures._id': req.params.id,
     });

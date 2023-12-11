@@ -24,7 +24,7 @@
     <% asteroidsData[date].forEach((asteroid) => { %>
         <img src="./images/NASA-Logo-Large.png" alt="nasa-logo">
         <a href="/asteroids/<%=asteroid.id%>">
-        <h3>Name: <%= asteroid.name.slice(1,-1) %></h3>
+        <h3>Name: <%= asteroid.name.slice(1,-1).replace('(',' ') %></h3>
         </a>
             <p>Magnitude: <%= asteroid.absolute_magnitude_h %>
             </p>
