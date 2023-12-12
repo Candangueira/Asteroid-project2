@@ -23,8 +23,8 @@ passport.use(
                 if (user) return cb(null, user);
                 // We have a new user via OAuth!
                 user = await User.create({
-                    name: profile.displayName,
                     googleId: profile.id,
+                    name: profile.displayName,
                     email: profile.emails[0].value,
                     avatar: profile.photos[0].value,
                 });
@@ -37,7 +37,7 @@ passport.use(
 );
 // turns the user object into string to send as HTML
 passport.serializeUser((user, cb) => {
-    cb(null, user.id);
+    cb(null, user._id);
 });
 
 // turns the user string into an object again

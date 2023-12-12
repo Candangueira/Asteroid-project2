@@ -27,9 +27,14 @@ async function newAsteroid(req, res) {
 // Create and Post the new Asteroid //
 async function createAsteroid(req, res) {
     try {
+        req.body.user = req.user._id;
+        req.body.userName = req.user.name;
+        req.body.userAvatar = req.user.avatar;
+
         const newAsteroid = await Asteroid.create(req.body);
+
         newAsteroid.pictures.push(req.body);
-        // console.log(newAsteroid);
+
         res.redirect('/asteroids');
     } catch (err) {
         console.log(err);
@@ -42,9 +47,6 @@ async function createAsteroid(req, res) {
 async function createPictures(req, res) {
     const asteroid = await Asteroid.findById(req.params.id);
     asteroid.pictures.push(req.body);
-    //  req.body.user = req.user._id;
-    //  req.body.userName = req.user.name;
-    //  req.body.userAvatar = req.user.avatar;
 
     try {
         await asteroid.save();
@@ -96,15 +98,6 @@ async function showAll(req, res, next) {
         res.redirect('/asteroids');
     }
 
-    // console.log('DATABASE:' + userAddedAsteroids);
-    // console.log(
-    //     'QUERY STRING:' +
-    //         ' initial-date: ' +
-    //         initialDate +
-    //         ' end-date: ' +
-    //         endDate
-    // );
-
     const asteroids = fetch(
         `https://api.nasa.gov/neo/rest/v1/feed?start_date=${initialDate}&end_date=${endDate}&api_key=${process.env.NASA_API_KEY}`
     );
@@ -145,7 +138,6 @@ async function showAll(req, res, next) {
 async function show(req, res, next) {
     const asteroidId = await req.params.id;
 
-    // if (req.params.neo_reference_id !== undefined) {
     // Single Asteroid finder API // ---------------------------------------------------------------------
     console.log('nasa-single-asteroid');
 
@@ -165,7 +157,7 @@ async function show(req, res, next) {
             //throw new Error('404');
         })
         .then((data) => {
-            console.log(data);
+            // console.log(data);
             const AsteroidData = data;
             console.log('FETCH DATA:' + data);
             // checks if exists a 'neo_reference_id'(that only exists in NASA database) and if it's the same as the ID provided. //
@@ -174,9 +166,11 @@ async function show(req, res, next) {
                 res.render('nasa-single-asteroid.ejs', {
                     asteroid: AsteroidData,
                 });
+
+                // renders the USER single-asteroid //
             } else {
                 console.log(asteroidId);
-                const asteroid = Asteroid.findById(asteroidId);
+                // const asteroid = await Asteroid.findById(asteroidId);
                 console.log(asteroid);
                 res.render('single-asteroid.ejs', {
                     asteroid,

@@ -42,6 +42,12 @@ const asteroidSchema = new Schema(
             required: true,
         },
         pictures: [picturesSchema],
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        userName: String,
+        userAvatar: String,
     },
     {
         timestamps: true,
