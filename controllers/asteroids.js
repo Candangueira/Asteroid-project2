@@ -144,11 +144,13 @@ async function showAll(req, res, next) {
 
 async function show(req, res, next) {
     const asteroidId = await req.params.id;
+    console.log(asteroidId);
     // if (req.params.id == null) {
     //     res.send('no id ');
     // }
 
     // Single Asteroid finder API // ---------------------------------------------------------------------
+
     const nasaAsteroids = fetch(
         `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
     );
@@ -170,9 +172,12 @@ async function show(req, res, next) {
             console.log(error);
         });
 
+    // -----------------------------------------------------------------------------------------------------
+    // WORKING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
     // Single Asteroid User finder // ---------------------------------------------------------------------
     // } else {
-    // const asteroid = await Asteroid.findById(req.params.id);
+    // const asteroid = await Asteroid.findById(asteroidId);
     // res.render('single-asteroid.ejs', {
     //     asteroid,
     // });

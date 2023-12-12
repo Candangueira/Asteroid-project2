@@ -41,6 +41,8 @@
 <!-- // USER ASTEROIDS // ------------------------------------------------------------------------> 
 
     <% userAddedAsteroids.forEach((asteroid)=> {  %>
+    <td class="asteroid-user"><img alt="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer"></td>
+    <h5 class="profile-name"><%= user %></h5>
     <div class="user-asteroid">
         <a href="/asteroids/<%=asteroid._id%>">
             <h3>Name: <%= asteroid.name %></h3>
