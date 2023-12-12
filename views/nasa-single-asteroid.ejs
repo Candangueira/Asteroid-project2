@@ -13,7 +13,7 @@
     
     <p>More details: <a href='<%= asteroid.nasa_jpl_url %>'><%= asteroid.nasa_jpl_url%></a></p>
 
-    <p>List of days it will be closer to the Earth: <% asteroid.close_approach_data.map((dates)=> { %>
+    <p>List of days it will be close to the Earth: <% asteroid.close_approach_data.map((dates)=> { %>
     <br>
      <%= dates.close_approach_date %>
     

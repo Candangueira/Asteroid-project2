@@ -144,28 +144,44 @@ async function showAll(req, res, next) {
 
 async function show(req, res, next) {
     const asteroidId = await req.params.id;
-    console.log(asteroidId);
-    // if (req.params.id == null) {
-    //     res.send('no id ');
-    // }
 
+    // if (req.params.neo_reference_id !== undefined) {
     // Single Asteroid finder API // ---------------------------------------------------------------------
+    console.log('nasa-single-asteroid');
 
     const nasaAsteroids = fetch(
         `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
     );
 
+    console.log(nasaAsteroids);
+
     nasaAsteroids
         .then((res) => {
-            if (res.ok) return res.json();
-            throw new Error('404');
+            if (res.ok) {
+                return res.json();
+            } else {
+                return '! NOT an asteroid in NASA database !';
+            }
+            //throw new Error('404');
         })
         .then((data) => {
             console.log(data);
             const AsteroidData = data;
-            res.render('nasa-single-asteroid.ejs', {
-                asteroid: AsteroidData,
-            });
+            console.log('FETCH DATA:' + data);
+            // checks if exists a 'neo_reference_id'(that only exists in NASA database) and if it's the same as the ID provided. //
+            // if not, opens the 'single-user-page //
+            if (AsteroidData.neo_reference_id === asteroidId) {
+                res.render('nasa-single-asteroid.ejs', {
+                    asteroid: AsteroidData,
+                });
+            } else {
+                console.log(asteroidId);
+                const asteroid = Asteroid.findById(asteroidId);
+                console.log(asteroid);
+                res.render('single-asteroid.ejs', {
+                    asteroid,
+                });
+            }
         })
         .catch((error) => {
             console.log('error 404 catch');
@@ -173,15 +189,6 @@ async function show(req, res, next) {
         });
 
     // -----------------------------------------------------------------------------------------------------
-    // WORKING HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-
-    // Single Asteroid User finder // ---------------------------------------------------------------------
-    // } else {
-    // const asteroid = await Asteroid.findById(asteroidId);
-    // res.render('single-asteroid.ejs', {
-    //     asteroid,
-    // });
-    // // }
 }
 
 // edit asteroid //
