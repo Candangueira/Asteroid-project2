@@ -136,52 +136,46 @@ async function showAll(req, res, next) {
 // -------------------------------------------------------------------------------------------------------
 
 async function show(req, res, next) {
-    const asteroidId = await req.params.id;
+    const asteroidId = req.params.id;
+    const userAsteroid = await Asteroid.findById(asteroidId);
 
     // Single Asteroid finder API // ---------------------------------------------------------------------
-    console.log('nasa-single-asteroid');
 
-    const nasaAsteroids = fetch(
-        `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
-    );
-
-    console.log(nasaAsteroids);
-
-    nasaAsteroids
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return '! NOT an asteroid in NASA database !';
-            }
-            //throw new Error('404');
-        })
-        .then((data) => {
-            // console.log(data);
-            const AsteroidData = data;
-            console.log('FETCH DATA:' + data);
-            // checks if exists a 'neo_reference_id'(that only exists in NASA database) and if it's the same as the ID provided. //
-            // if not, opens the 'single-user-page //
-            if (AsteroidData.neo_reference_id === asteroidId) {
-                res.render('nasa-single-asteroid.ejs', {
-                    asteroid: AsteroidData,
-                });
-
-                // renders the USER single-asteroid //
-            } else {
-                console.log(asteroidId);
-                // const asteroid = await Asteroid.findById(asteroidId);
-                console.log(asteroid);
-                res.render('single-asteroid.ejs', {
-                    asteroid,
-                });
-            }
-        })
-        .catch((error) => {
-            console.log('error 404 catch');
-            console.log(error);
+    // renders the USER single-asteroid // ---------------------------------------------------------------
+    console.log(userAsteroid);
+    if (userAsteroid) {
+        return res.render('single-asteroid.ejs', {
+            asteroid: userAsteroid,
         });
-
+    } else {
+        const nasaAsteroidsReq = await fetch(
+            `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
+        );
+        const nasaAsteroid = await nasaAsteroidsReq.json();
+        res.render('nasa-single-asteroid.ejs', {
+            asteroid: nasaAsteroid,
+        });
+        // nasaAsteroids
+        //     .then((res) => {
+        //         if (res.ok) {
+        //             return res.json();
+        //         } else {
+        //             throw new Error('404');
+        //         }
+        //         //
+        //     })
+        //     .then((data) => {
+        //         const AsteroidData = data;
+        //         console.log('FETCH DATA:' + data);
+        //         res.render('nasa-single-asteroid.ejs', {
+        //             asteroid: AsteroidData,
+        //         });
+        //     })
+        //     .catch((error) => {
+        //         console.log('error 404 catch');
+        //         console.log(error);
+        //     });
+    }
     // -----------------------------------------------------------------------------------------------------
 }
 
