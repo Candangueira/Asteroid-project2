@@ -15,15 +15,16 @@
 
 
 
-<body class="bg-$blue-900">
+<body >
     
     <header>
         
         <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <a class="navbar-brand">Asteroid Finder</a>
         
-           <nav class="container-fluid justify-content-center">
+        <a class="container justify-content-start navbar-brand">Asteroid Finder</a>
+        
+           <nav class="justify-content-center ">
             
                 <ul class="nav nav">
                 <li class="home-pg">
@@ -39,7 +40,7 @@
 
         <% if (user) { %>
 
-            <nav class="nav justify-content-end text-nowrap">
+            <nav class="nav justify-content-start text-nowrap">
             <a class="nav-link" class="col-12" href="/logout">LOG OUT</a>
             <% } else { %>
                 <a href="/auth/google" >LOG IN&nbsp;</a>

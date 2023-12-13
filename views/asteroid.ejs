@@ -19,13 +19,15 @@
 
 <% dates.forEach((date)=> { %>
     <br>
+
     <b><%= date %></b>
     <br>
     <% asteroidsData[date].forEach((asteroid) => { %>
+        
         <img src="../images/NASA-Logo-Large.png" alt="nasa-logo">
         <a href="/asteroids/<%=asteroid.id%>" text-decoration:none >
-        <h3>Name: <%= asteroid.name.slice(1,-1).replace('(',' ') %></h3>
-        </a>
+        <div class="container my-4 flex-shrink-0"> <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
+        </div>
             <p>Magnitude: <%= asteroid.absolute_magnitude_h %>
             </p>
             <p>Diameter: <%= asteroid.estimated_diameter.meters.estimated_diameter_min %>
@@ -33,6 +35,7 @@
             <p>Is Hazardous?: <%= asteroid.is_potentially_hazardous_asteroid %>
             </p>
             <p>Day it will be closest to the Earth: <%= date %></p>
+        
      
    <% }); %>
 <% }); %>

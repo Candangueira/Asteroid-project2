@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:3000/asteroids -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./Asteroid Finder - List of All Asteroids_files/style.css">
+    <link href="./Asteroid Finder - List of All Asteroids_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./Asteroid Finder - List of All Asteroids_files/docs.css" rel="stylesheet">
+    <script src="./Asteroid Finder - List of All Asteroids_files/bootstrap.bundle.min.js"></script>
+    <title>Asteroid Finder - List of All Asteroids</title>
+    
+</head>
+
+
+
+
+<body data-new-gr-c-s-check-loaded="14.1145.0" data-gr-ext-installed="" ext-version="3.1.7" cz-shortcut-listen="true">
+    
+    <header>
+        
+        <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+
+        
+        <a class="container justify-content-start navbar-brand">Asteroid Finder</a>
+        
+           <nav class="container justify-content-start mx-auto">
+            
+                <ul class="nav nav">
+                <li class="home-pg">
+                <a class="nav-link" aria-current="page" href="http://localhost:3000/">home</a>
+                </li>
+                <li class="asteroid-pg">
+                <a class="nav-link" href="http://localhost:3000/asteroids">list of asteroids</a>
+                </li>
+                <li class="add-asteroid-pg">
+                <a class="nav-link" href="http://localhost:3000/asteroids/add-asteroid" aria-disabled="true">add asteroid</a>
+                </li>
+            </ul></nav>
+
+        
+
+            <nav class="nav justify-content-start text-nowrap">
+            <a class="nav-link" href="http://localhost:3000/logout">LOG OUT</a>
+            
+            </nav>
+            
+       
+        </nav>
+    </header>
+
+
+<h3> List of Asteroids </h3>
+
+ <!-- Adds a specific date based on the closest approach to Earth -->
+
+<p>Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
+
+<form id="newDate" action="http://localhost:3000/asteroids" method="GET">
+    <label>Date:</label>
+    <input type="date" required="" name="initialDate">
+    <label>until:</label>
+    <input type="date" required="" name="endDate">
+    <input type="submit" value="add-date">
+</form>
+
+
+ <!-- // NASA API ASTEROIDS //  ------------------------------------------------------------------->
+
+
+    <br>
+    <b>2024-01-01</b>
+    <br>
+    
+        <img src="./Asteroid Finder - List of All Asteroids_files/NASA-Logo-Large.png" alt="nasa-logo">
+        <a href="http://localhost:3000/asteroids/3724393" text-decoration:none="">
+        <h3>Name: 2015 OD22</h3>
+        </a>
+            <p>Magnitude: 21.21
+            </p>
+            <p>Diameter: 152.249185036
+            </p>
+            <p>Is Hazardous?: false
+            </p>
+            <p>Day it will be closest to the Earth: 2024-01-01</p>
+     
+   
+        <img src="./Asteroid Finder - List of All Asteroids_files/NASA-Logo-Large.png" alt="nasa-logo">
+        <a href="http://localhost:3000/asteroids/3797695" text-decoration:none="">
+        <h3>Name: 2018 BA</h3>
+        </a>
+            <p>Magnitude: 25
+            </p>
+            <p>Diameter: 26.58
+            </p>
+            <p>Is Hazardous?: false
+            </p>
+            <p>Day it will be closest to the Earth: 2024-01-01</p>
+     
+   
+        <img src="./Asteroid Finder - List of All Asteroids_files/NASA-Logo-Large.png" alt="nasa-logo">
+        <a href="http://localhost:3000/asteroids/3986699" text-decoration:none="">
+        <h3>Name: 2020 BC</h3>
+        </a>
+            <p>Magnitude: 26.2
+            </p>
+            <p>Diameter: 15.2951935344
+            </p>
+            <p>Is Hazardous?: false
+            </p>
+            <p>Day it will be closest to the Earth: 2024-01-01</p>
+     
+   
+        <img src="./Asteroid Finder - List of All Asteroids_files/NASA-Logo-Large.png" alt="nasa-logo">
+        <a href="http://localhost:3000/asteroids/54200446" text-decoration:none="">
+        <h3>Name: 2021 SG2</h3>
+        </a>
+            <p>Magnitude: 25.54
+            </p>
+            <p>Diameter: 20.7278843377
+            </p>
+            <p>Is Hazardous?: false
+            </p>
+            <p>Day it will be closest to the Earth: 2024-01-01</p>
+     
+   
+        <img src="./Asteroid Finder - List of All Asteroids_files/NASA-Logo-Large.png" alt="nasa-logo">
+        <a href="http://localhost:3000/asteroids/54235663" text-decoration:none="">
+        <h3>Name: 2022 AO2</h3>
+        </a>
+            <p>Magnitude: 24.19
+            </p>
+            <p>Diameter: 38.5971267955
+            </p>
+            <p>Is Hazardous?: false
+            </p>
+            <p>Day it will be closest to the Earth: 2024-01-01</p>
+     
+   
+
+
+
+<!-- // USER ASTEROIDS // ------------------------------------------------------------------------> 
+
+    
+    <img alt="avatar" src="./Asteroid Finder - List of All Asteroids_files/unnamed.jpg" referrerpolicy="no-referrer">
+    <h5 class="profile-name">added by:Cassio Souza</h5>
+    <div class="user-asteroid">
+        <a href="http://localhost:3000/asteroids/65786ab2aa5d4acb1ff96f23">
+            <h3>Name: naklsdfnmsdkfa</h3>
+        </a>
+            <p>Magnitude: 0.05</p>
+            <p>Diameter: 0.08</p>
+            <p>Is Hazardous?: false</p>
+            <p>Day it will be closest to the Earth: 12/20/2023</p>
+    </div>
+    
+    <img alt="avatar" src="./Asteroid Finder - List of All Asteroids_files/unnamed.jpg" referrerpolicy="no-referrer">
+    <h5 class="profile-name">added by:Cassio Souza</h5>
+    <div class="user-asteroid">
+        <a href="http://localhost:3000/asteroids/65796fa31f68939502ab77d9">
+            <h3>Name: das</h3>
+        </a>
+            <p>Magnitude: 0.03</p>
+            <p>Diameter: 0.03</p>
+            <p>Is Hazardous?: false</p>
+            <p>Day it will be closest to the Earth: 1/4/2024</p>
+    </div>
+    
+
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
