@@ -1,5 +1,6 @@
 const { query } = require('express');
 const Asteroid = require('../models/asteroid');
+const mongoose = require('mongoose');
 
 module.exports = {
     showAll,
@@ -136,46 +137,39 @@ async function showAll(req, res, next) {
 // -------------------------------------------------------------------------------------------------------
 
 async function show(req, res, next) {
+    // gets the id or _id //
     const asteroidId = req.params.id;
-    const userAsteroid = await Asteroid.findById(asteroidId);
 
-    // Single Asteroid finder API // ---------------------------------------------------------------------
+    // checking if its an Object._id or not //
+    const mongooseIsValid = mongoose.isValidObjectId(asteroidId);
+
+    let asteroid;
+
+    // Single Asteroid finder // ---------------------------------------------------------------------
 
     // renders the USER single-asteroid // ---------------------------------------------------------------
-    console.log(userAsteroid);
-    if (userAsteroid) {
-        return res.render('single-asteroid.ejs', {
-            asteroid: userAsteroid,
-        });
-    } else {
-        const nasaAsteroidsReq = await fetch(
-            `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
-        );
-        const nasaAsteroid = await nasaAsteroidsReq.json();
-        res.render('nasa-single-asteroid.ejs', {
-            asteroid: nasaAsteroid,
-        });
-        // nasaAsteroids
-        //     .then((res) => {
-        //         if (res.ok) {
-        //             return res.json();
-        //         } else {
-        //             throw new Error('404');
-        //         }
-        //         //
-        //     })
-        //     .then((data) => {
-        //         const AsteroidData = data;
-        //         console.log('FETCH DATA:' + data);
-        //         res.render('nasa-single-asteroid.ejs', {
-        //             asteroid: AsteroidData,
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         console.log('error 404 catch');
-        //         console.log(error);
-        //     });
+
+    // if its an Object._id do: //
+    if (mongooseIsValid) {
+        asteroid = await Asteroid.findById(asteroidId);
     }
+    // if asteroid isnt falsy ( exist in the database) //
+    // return assure that the function stops there if its true //
+    if (asteroid) {
+        return res.render('single-asteroid.ejs', {
+            asteroid,
+        });
+    }
+    // otherwise it will access the NASA API //
+
+    const nasaAsteroidsReq = await fetch(
+        `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
+    );
+    const nasaAsteroid = await nasaAsteroidsReq.json();
+    res.render('nasa-single-asteroid.ejs', {
+        asteroid: nasaAsteroid,
+    });
+
     // -----------------------------------------------------------------------------------------------------
 }
 
