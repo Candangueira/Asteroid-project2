@@ -2,47 +2,57 @@
 
 <div style="margin: 3em; padding: 1em;" class="justify-content-center">
 
-<h3> List of Asteroids </h3>
 
+<div style="display: flex; justify-content: center; margin-top: 1em;">
+    <h3 style="font-size: xx-large;"> List of Asteroids </h3>
+</div>
  <!-- Adds a specific date based on the closest approach to Earth -->
 
-<p class="justify-content-center">Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
-
-<div class="justify-content-center" >
-    <form id="newDate" action="/asteroids" method="GET">
-        <label>Date:</label>
-        <input type="date" required name="initialDate">
-        <label>until:</label>
-        <input type="date" required name="endDate">
-        <input type="submit" value="add-date">
-    </form>
+<div style="display: flex; justify-content: center;">
+    <p class="justify-content-center">Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
 </div>
 
+<br>
+
+<div style="display: flex; justify-content: center;">
+    <div class="justify-content-center" >
+        <form id="newDate" action="/asteroids" method="GET">
+            <label>from:</label>
+            <input type="date" required name="initialDate">
+            <label> until:</label>
+            <input type="date" required name="endDate">
+            <input class="btn btn-outline-primary me-2" type="submit" value="add-date">
+        </form>
+    </div>
 </div>
+</div>
+
  <!-- // NASA API ASTEROIDS //  ------------------------------------------------------------------->
 
 <% dates.forEach((date)=> { %>
     <br>
+    
+        <div class="btn btn-outline-primary" style="display: flex; justify-content: center; margin-top: 2.5em; margin-bottom: 2em; font-size:xx-large"><%=date %></div>
+            <br> 
 
-    <div style="margin-left: 2em; font-size:x-large"><%= date %></div>
-    <br>
-    <% asteroidsData[date].forEach((asteroid) => { %>
+            <% asteroidsData[date].forEach((asteroid) => { %>
     
-    
-    <button style="margin-right: 3em; margin-left: 3em; padding: 1em;" type="button" class="btn btn-primary-outline">
+            <div style="display:inline-flex; margin-left: 1em; margin-right: 1em; ">
+            
+            <button style="padding: 1em;" type="button" class="btn btn-primary-outline active">
        
     
-     <div class="row">
+            <div style="margin: 1em;" class="row">
 
-      <div style="height:75%; padding: 1em;" class="mx-auto p-6 col-12 justify-content-center">
+            <div style="padding: 1em;" class="mx-auto p-6 col-12 justify-content-center">
 
-        <img src="../images/NASA-Logo-Large.png" alt="nasa-logo">
+             <img src="../images/NASA-Logo-Large.png" alt="nasa-logo">
         
-        <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
-        </div>
+                <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
+                </div>
+   
 
-
-        <div style="gap: 2px;" class="d-grid row-1 justify-content-center">
+            <div style="gap: 2px;" class="d-grid row-1 justify-content-center">
             
             <p>Magnitude:<div class="p-2 bg-light border"><%= asteroid.absolute_magnitude_h %></div>
             </p>
@@ -53,11 +63,13 @@
             <p>Is Hazardous?:<div class="p-2 bg-light border"> <%= asteroid.is_potentially_hazardous_asteroid %></div>
             </p>
 
-            <p>Day it will be closest to the Earth: <div class="p-2 bg-light border"><%= date %></p></div>
+            <p>Day it will be closest to the Earth: <div class="btn underline p-2 bg-light border"><%= date %></p></div>
+            </div>
+
 
             </div>
+           </div>
          </div>
-        </div>
         </a>
     </button>
     
@@ -70,19 +82,18 @@
     <% userAddedAsteroids.forEach((asteroid)=> {  %>
     <br>
     
-    <button style="margin-right: 3em; margin-left: 3em; padding: 1em;" type="button" class="btn btn-primary-outline">
+    <button style="display:inline-flex; margin-right: 3em; margin-left: 3em; padding: 1em; " type="button" class="btn btn-primary-outline">
     
     
-        <div class="row">
+
     
             <div style="height:75%; padding: 1em;" class="mx-auto p-2 col-12 justify-content-center">
    
-
-        <div class="mx-auto p-2 col-12 justify-content-center">
-
-            <div class="d-grid gap-10 col-10 mx-auto">
-
-    <td class="asteroid-user"><img class="justify-content-center" style="border-radius: 50% ;" alt="avatar" src="<%= asteroid.userAvatar %>" referrerpolicy="no-referrer"></td>
+                <td class="asteroid-user">
+        <div>
+        <img class="justify-content-center" style=" border-radius: 50% ; " alt="avatar" src="<%= asteroid.userAvatar %>" referrerpolicy="no-referrer">
+        </div>
+    </td>
     <h5 style="font-size: small;" class="profile-name">added by: <%= asteroid.userName %></h5>
     <div class="user-asteroid">
         <div class="d-grid gap-10 col-12 mx-auto"> <a href="/asteroids/<%=asteroid._id%>" class="btn btn-outline-dark">
@@ -97,9 +108,9 @@
 
             <p>Day it will be closest to the Earth: <div class="p-2 bg-light border"><%= asteroid.date.getUTCFullYear()+"-"+ asteroid.date.getUTCMonth()+ 1 +"-"+asteroid.date.getUTCDate(); %></div></p>
             
-                </div>
-                </div>
-            </div>
+             
+              
+         
         </div>
         </div>
          </div>

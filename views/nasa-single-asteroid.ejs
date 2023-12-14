@@ -12,11 +12,28 @@
     <p>Is Hazardous?: <div class="p-2 bg-light border"><%= asteroid.is_potentially_hazardous_asteroid %></div>
     </p>
 
-    <p>List of days it will be close to the Earth: <% asteroid.close_approach_data.map((dates)=> { %>
-    <br>
-    <div class="col-2 p-2 bg-light border"><%= dates.close_approach_date %></div>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    List of dates it will be close to the Earth:
+                </button>
+            </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <% asteroid.close_approach_data.map((dates)=> { %>
+                <strong style="display: flex; justify-content: center;">
+                    <div style="display: flex; justify-content: center;" class="col-3 p-2 bg-light border">
+                        <%= dates.close_approach_date %>
+                    </div>
+                </strong>
+                    <% }); %>
+            </div>
+        </div>
+        </div>
     
-     <%   }); %> </p>
+    <br>
     <p>More details: <a href='<%= asteroid.nasa_jpl_url %>'>
             <%= asteroid.nasa_jpl_url%>
         </a></p>
