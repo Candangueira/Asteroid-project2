@@ -1,33 +1,48 @@
 <%- include ('./partials/header') %>
 
+<div class="justify-content-center">
+
 <h3> List of Asteroids </h3>
 
  <!-- Adds a specific date based on the closest approach to Earth -->
 
-<p>Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
+<p class="justify-content-center">Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
 
-<form id="newDate" action="/asteroids" method="GET">
-    <label>Date:</label>
-    <input type="date" required name="initialDate">
-    <label>until:</label>
-    <input type="date" required name="endDate">
-    <input type="submit" value="add-date">
-</form>
+<div class="justify-content-center" style="border:1px solid red">
+    <form id="newDate" action="/asteroids" method="GET">
+        <label>Date:</label>
+        <input type="date" required name="initialDate">
+        <label>until:</label>
+        <input type="date" required name="endDate">
+        <input type="submit" value="add-date">
+    </form>
+</div>
 
-
+</div>
  <!-- // NASA API ASTEROIDS //  ------------------------------------------------------------------->
 
 <% dates.forEach((date)=> { %>
     <br>
 
-    <b><%= date %></b>
+    <div class=""><%= date %></div>
     <br>
     <% asteroidsData[date].forEach((asteroid) => { %>
-        
+    
+    
+    <button type="button" class="btn btn-primary-outline">
+       
+    
+     <div class="row">
+
+      <div style="width: 90%;" class="mx-auto p-2 col-12 justify-content-center">
+
         <img src="../images/NASA-Logo-Large.png" alt="nasa-logo">
-        <a href="/asteroids/<%=asteroid.id%>" text-decoration:none >
-        <div class="container my-4 flex-shrink-0"> <a href="#" class="btn d-block w-100 d-sm-inline-block btn-light"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
+        
+        <div class="d-grid gap-10 col-10 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
         </div>
+
+        <div class="justify-content-center">
+            
             <p>Magnitude: <%= asteroid.absolute_magnitude_h %>
             </p>
             <p>Diameter: <%= asteroid.estimated_diameter.meters.estimated_diameter_min %>
@@ -35,8 +50,13 @@
             <p>Is Hazardous?: <%= asteroid.is_potentially_hazardous_asteroid %>
             </p>
             <p>Day it will be closest to the Earth: <%= date %></p>
-        
-     
+
+            </div>
+         </div>
+        </div>
+        </a>
+    </button>
+    
    <% }); %>
 <% }); %>
 

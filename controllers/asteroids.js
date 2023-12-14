@@ -165,7 +165,18 @@ async function show(req, res, next) {
     const nasaAsteroidsReq = await fetch(
         `https://api.nasa.gov/neo/rest/v1/neo/${asteroidId}?api_key=${process.env.NASA_API_KEY}`
     );
+
     const nasaAsteroid = await nasaAsteroidsReq.json();
+
+    // try {
+    //     if (nasaAsteroidsReq.ok) {
+    //         return nasaAsteroid;
+    //     }
+    // } catch (err) {
+    //     console.log(err);
+    // }
+
+    //
     res.render('nasa-single-asteroid.ejs', {
         asteroid: nasaAsteroid,
     });

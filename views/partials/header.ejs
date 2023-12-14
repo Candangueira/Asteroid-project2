@@ -19,34 +19,31 @@
     
     <header>
         
-        <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark ">
 
         
         <a class="container justify-content-start navbar-brand">Asteroid Finder</a>
         
            <nav class="justify-content-center ">
-            
-                <ul class="nav nav">
-                <li class="home-pg">
-                <a class="nav-link" aria-current="page" href="/">home</a>
-                </li>
-                <li class="asteroid-pg">
-                <a class="nav-link" href="/asteroids">list of asteroids</a>
-                </li>
-                <li class="add-asteroid-pg">
-                <a class="nav-link" href="/asteroids/add-asteroid" aria-disabled="true" >add asteroid</a>
-                </li>
+
+            <form class="container-fluid justify-content-start">
+                
+                <a class="nav-nav" href="/"><button class="btn btn-outline-primary me-2" type="button">home</button></a>
+                <a class="nav-nav" href="/asteroids"><button class="btn btn-outline-primary me-2" type="button">list of asteroids</button></a>              
+                <a class="nav-nav" href="/asteroids/add-asteroid" aria-disabled="true" ><button class="btn btn-outline-primary me-2" type="button">add asteroid</button></a>
+              
+             </form>
             </nav>
 
         <% if (user) { %>
 
-            <nav class="nav justify-content-start text-nowrap">
+            <nav class="nav justify-content-center text-nowrap">
             <a class="nav-link" class="col-12" href="/logout">LOG OUT</a>
             <% } else { %>
                 <a href="/auth/google" >LOG IN&nbsp;</a>
                 <% } %>
             </nav>
-            </ul>
+            
        
         </nav>
     </header>
