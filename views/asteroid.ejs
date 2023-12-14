@@ -1,6 +1,6 @@
 <%- include ('./partials/header') %>
 
-<div class="justify-content-center">
+<div style="margin: 3em; padding: 1em;" class="justify-content-center">
 
 <h3> List of Asteroids </h3>
 
@@ -8,7 +8,7 @@
 
 <p class="justify-content-center">Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
 
-<div class="justify-content-center" style="border:1px solid red">
+<div class="justify-content-center" >
     <form id="newDate" action="/asteroids" method="GET">
         <label>Date:</label>
         <input type="date" required name="initialDate">
@@ -24,32 +24,36 @@
 <% dates.forEach((date)=> { %>
     <br>
 
-    <div class=""><%= date %></div>
+    <div style="margin-left: 2em; font-size:x-large"><%= date %></div>
     <br>
     <% asteroidsData[date].forEach((asteroid) => { %>
     
     
-    <button type="button" class="btn btn-primary-outline">
+    <button style="margin-right: 3em; margin-left: 3em; padding: 1em;" type="button" class="btn btn-primary-outline">
        
     
      <div class="row">
 
-      <div style="width: 90%;" class="mx-auto p-2 col-12 justify-content-center">
+      <div style="height:75%; padding: 1em;" class="mx-auto p-6 col-12 justify-content-center">
 
         <img src="../images/NASA-Logo-Large.png" alt="nasa-logo">
         
-        <div class="d-grid gap-10 col-10 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
+        <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
         </div>
 
-        <div class="justify-content-center">
+
+        <div style="gap: 2px;" class="d-grid row-1 justify-content-center">
             
-            <p>Magnitude: <%= asteroid.absolute_magnitude_h %>
+            <p>Magnitude:<div class="p-2 bg-light border"><%= asteroid.absolute_magnitude_h %></div>
             </p>
-            <p>Diameter: <%= asteroid.estimated_diameter.meters.estimated_diameter_min %>
+            
+            <p>Diameter:<div class="p-2 bg-light border"><%= asteroid.estimated_diameter.meters.estimated_diameter_min %></div>
             </p>
-            <p>Is Hazardous?: <%= asteroid.is_potentially_hazardous_asteroid %>
+
+            <p>Is Hazardous?:<div class="p-2 bg-light border"> <%= asteroid.is_potentially_hazardous_asteroid %></div>
             </p>
-            <p>Day it will be closest to the Earth: <%= date %></p>
+
+            <p>Day it will be closest to the Earth: <div class="p-2 bg-light border"><%= date %></p></div>
 
             </div>
          </div>
@@ -64,17 +68,45 @@
 <!-- // USER ASTEROIDS // ------------------------------------------------------------------------> 
 
     <% userAddedAsteroids.forEach((asteroid)=> {  %>
-    <td class="asteroid-user"><img alt="avatar" src="<%= asteroid.userAvatar %>" referrerpolicy="no-referrer"></td>
-    <h5 class="profile-name">added by:<%= asteroid.userName %></h5>
+    <br>
+    
+    <button style="margin-right: 3em; margin-left: 3em; padding: 1em;" type="button" class="btn btn-primary-outline">
+    
+    
+        <div class="row">
+    
+            <div style="height:75%; padding: 1em;" class="mx-auto p-2 col-12 justify-content-center">
+   
+
+        <div class="mx-auto p-2 col-12 justify-content-center">
+
+            <div class="d-grid gap-10 col-10 mx-auto">
+
+    <td class="asteroid-user"><img class="justify-content-center" style="border-radius: 50% ;" alt="avatar" src="<%= asteroid.userAvatar %>" referrerpolicy="no-referrer"></td>
+    <h5 style="font-size: small;" class="profile-name">added by: <%= asteroid.userName %></h5>
     <div class="user-asteroid">
-        <a href="/asteroids/<%=asteroid._id%>">
-            <h3>Name: <%= asteroid.name %></h3>
-        </a>
-            <p>Magnitude: <%= asteroid.magnitude %></p>
-            <p>Diameter: <%= asteroid.diameter %></p>
-            <p>Is Hazardous?: <%= asteroid.hazardous %></p>
-            <p>Day it will be closest to the Earth: <%= asteroid.date.getUTCMonth() + 1 +"/"+asteroid.date.getUTCDate()+"/"+asteroid.date.getUTCFullYear(); %></p>
+        <div class="d-grid gap-10 col-12 mx-auto"> <a href="/asteroids/<%=asteroid._id%>" class="btn btn-outline-dark">
+                <%= asteroid.name %></a>
+                </div>
+        
+            <p>Magnitude: <div class="p-2 bg-light border"><%= asteroid.magnitude %></div></p>
+
+            <p>Diameter:<div class="p-2 bg-light border"> <%= asteroid.diameter %></div></p>
+
+            <p>Is Hazardous?:<div class="p-2 bg-light border"><%= asteroid.hazardous %></div></p> 
+
+            <p>Day it will be closest to the Earth: <div class="p-2 bg-light border"><%= asteroid.date.getUTCFullYear()+"-"+ asteroid.date.getUTCMonth()+ 1 +"-"+asteroid.date.getUTCDate(); %></div></p>
+            
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+         </div>
+        </div>
     </div>
+    
+</button>
     <% }); %>
 
 <%- include ('./partials/footer') %>

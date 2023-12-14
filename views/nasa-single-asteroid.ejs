@@ -1,22 +1,24 @@
 <%- include ('./partials/header') %>
 
+<div style="font-size: x-large; display:flex; justify-content: center; align-items: center; margin: 5em;" class="justify-content-center">
 <section id="show-page">
 
-    <h3>Name: <%= asteroid.name %>
-    </h3>
-    <p>Magnitude: <%= asteroid.absolute_magnitude_h %>
+    <h3 style="font-size: xx-large;">Name:<button style="font-size: xx-large;" type="button" class="btn btn-primary-outline"><%= asteroid.name.slice(1,-1).replace('(',' ') %></button></h3>
+
+    <p>Magnitude: <div class="p-2 bg-light border"><%= asteroid.absolute_magnitude_h %></div>
     </p>
-    <p>Diameter: <%= asteroid.estimated_diameter.meters.estimated_diameter_min %>
+    <p>Diameter: <div class="p-2 bg-light border"><%= asteroid.estimated_diameter.meters.estimated_diameter_min %></div>
     </p>
-    <p>Is Hazardous?: <%= asteroid.is_potentially_hazardous_asteroid %>
+    <p>Is Hazardous?: <div class="p-2 bg-light border"><%= asteroid.is_potentially_hazardous_asteroid %></div>
     </p>
-    
-    <p>More details: <a href='<%= asteroid.nasa_jpl_url %>'><%= asteroid.nasa_jpl_url%></a></p>
 
     <p>List of days it will be close to the Earth: <% asteroid.close_approach_data.map((dates)=> { %>
     <br>
-     <%= dates.close_approach_date %>
+    <div class="col-2 p-2 bg-light border"><%= dates.close_approach_date %></div>
     
      <%   }); %> </p>
-
+    <p>More details: <a href='<%= asteroid.nasa_jpl_url %>'>
+            <%= asteroid.nasa_jpl_url%>
+        </a></p>
+</div>
 <%- include ('./partials/footer') %>

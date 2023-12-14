@@ -1,6 +1,6 @@
 <%- include ('./partials/header') %>
 
-    <form id="new-asteroid" action="/asteroids/<%=asteroids.id%>?_method=PUT" method="POST">
+    <form for="exampleFormControlInput1" class="form-label" id="new-asteroid" action="/asteroids/<%=asteroids.id%>?_method=PUT" method="POST">
         <br>
         <label>Name:</label>
         <input type="text" name="name" value="<%= asteroids.name %>">
