@@ -20,11 +20,11 @@
         <div class="bg-img bg-cover" style="background-image: url(/images/galaxies.png);"></div>
     </div>
     <header>
-        
-        <nav style="margin-top: 1em;"class="container-fluid navbar navbar-expand-lg navbar-dark" >
+
+        <nav style="margin-top: 0.5em;"class="container-fluid navbar navbar-expand-lg navbar-dark" >
 
         
-        <a style="margin-left: 5em;" class="container justify-content-start navbar-brand">Asteroid Finder</a>
+        <a style="margin-left: 5em;" class="container justify-content-start navbar-brand"><img src="/images/001-asteroid.png" style="width: 80px"; transform: rotate(30deg);></a>
         
            
         <nav class="justify-content-center">
@@ -42,11 +42,13 @@
         <% if (user) { %>
 
             <nav class="nav justify-content-center text-nowrap">
-            <a style="margin-right: 3em;"class="nav-link" class="col-12" href="/logout">LOG OUT</a>
+            <a style="margin-right: 3em;"class="nav-link" class="col-12" href="/logout"><img style="width: 20px; margin-right: 0.5em; margin-bottom: 0.2em" src="https://i.imgur.com/FHjYyi0.png">LOG OUT</a>
+        </nav>
             <% } else { %>
-                <a href="/auth/google" >LOG IN&nbsp;</a>
+                <nav class="nav justify-content-center text-nowrap">
+                <a style="margin-right: 3em;"class="nav-link" class="col-12" href="/auth/google" ><img style="width: 20px; margin-right: 0.5em; margin-bottom: 0.2em" src="https://i.imgur.com/FHjYyi0.png">LOG IN&nbsp;</a>
                 <% } %>
-            </nav>
+        </nav>
             
        
         </nav>
