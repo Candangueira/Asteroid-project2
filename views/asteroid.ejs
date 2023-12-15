@@ -91,13 +91,13 @@
                 <!-- IF IS HAZARDOUS -->
                     <% if(asteroid.is_potentially_hazardous_asteroid) { %>
                     <div style="display: inline-flex;" class="btn btn-underline p-12  bg-danger"></div>
-                    <b style="color: rgb(255, 255, 255)"><%= asteroid.is_potentially_hazardous_asteroid %></b>
+                    <b style="color: rgb(255, 255, 255)">Yes</b>
                     
                 <!-- IF IS NOT HAZARDOUS -->
                     <% } else { %>
                     <b style="color: rgb(0, 0, 0)">
                         <div style="display: inline-flex;" class="btn btn-underline p-12  bg-success">
-                        <%= asteroid.is_potentially_hazardous_asteroid %>
+                        No
                     </b>
                     <% } %>
                 </div>
@@ -203,7 +203,7 @@
         <% if( asteroid.hazardous) { %>
             <div style="display: inline-flex;" class="btn btn-underline p-12  bg-danger">
             <b style="color: rgb(255, 255, 255)">
-                <%= asteroid.hazardous %>
+                Yes
             </b>
             
 </div>
@@ -211,7 +211,7 @@
             <% } else { %>
                 <b style="color: rgb(0, 0, 0)">
                     <div style="display: inline-flex;" class="btn btn-underline p-12  bg-success">
-                        <%= asteroid.hazardous %>
+                        No
                 </b>
                 <% } %>
 

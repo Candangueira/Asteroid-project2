@@ -1,12 +1,39 @@
 <%- include ('./partials/header') %>
+<div style="font-size: x-large; display:flex; justify-content: center; align-items: center; margin: 5em;"
+    class="justify-content-center">
+    <section id="show-page">
 
 <form id="new-asteroid" action="/asteroids" method="POST">
-<br>
-    <label>Name:</label>
-    <input type="text" name="name">
-<br>
-    <label>Absolute Magnitude:</label>
-    <input type="number" step="0.01" name="magnitude">
+
+
+    <div class="form-row">
+    <div class="col-md-4 mb-3">
+    <label style="margin-left: 36.6em; width: 300px; color:aliceblue" for="validationServer01">Name of the asteroid:</label>
+   
+    <!-- NAME -->
+    
+    
+    <button class="btn btn-outline-primary active"
+        style="display: flex; width: 2000px; justify-content: center; margin-top: 0.5em; margin-bottom: 0.8em; font-size:xx-large;">  
+        <input type="text" name="name">
+        
+    </button>
+
+
+    <!-- Magnitude -->
+
+<div>
+    <!-- <label for="basic-url">Absolute Magnitude:</label> -->
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span  class="input-group-text" id="basic-addon3">Absolute Magnitude:</span>
+    </div>
+    <input style="display: flex; justify-content: center; padding-left: 38;" type="number" step="0.01" name="magnitude" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    </div>
+</div>
+</div>
+    
+    
 <br>
     <label>Estimated Diameter:</label>
     <input type="number" step="0.01" name="diameter">
@@ -24,4 +51,5 @@
     <input type="submit" value="Add Asteroid">
 </form>
 
+</div>
 <%- include ('./partials/footer') %>

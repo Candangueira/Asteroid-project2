@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:3000/asteroids -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./Asteroid Finder_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./Asteroid Finder_files/docs.css" rel="stylesheet">
+    <script src="./Asteroid Finder_files/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./Asteroid Finder_files/style.css">
+    <title>Asteroid Finder</title>
+    
+</head>
+
+
+
+
+<body data-new-gr-c-s-check-loaded="14.1146.0" data-gr-ext-installed="" ext-version="3.1.7" cz-shortcut-listen="true">
+    <div class="has-bg-img">
+        <div class="bg-img bg-cover" style="background-image: url(/images/galaxies.png);"></div>
+    </div>
+    <header>
+        
+        <nav style="margin-top: 1em;" class="container-fluid navbar navbar-expand-lg navbar-dark">
+
+        
+        <a style="margin-left: 5em;" class="container justify-content-start navbar-brand">Asteroid Finder</a>
+        
+           
+        <nav class="justify-content-center">
+
+            <form style="width: 500px" class="container-fluid justify-content-start">
+                
+                <a class="nav-nav" href="http://localhost:3000/"><button class="btn btn-outline-primary me-2" type="button">home</button></a>
+                <a class="nav-nav" href="http://localhost:3000/asteroids"><button class="btn btn-outline-primary me-2" type="button">list of asteroids</button></a>              
+                <a class="nav-nav" href="http://localhost:3000/asteroids/add-asteroid" aria-disabled="true"><button class="btn btn-outline-primary me-2" type="button">add asteroid</button></a>
+              
+             </form>
+
+            </nav>
+
+        
+
+            <nav class="nav justify-content-center text-nowrap">
+            <a style="margin-right: 3em;" class="nav-link" href="http://localhost:3000/logout">LOG OUT</a>
+            
+            </nav>
+            
+       
+        </nav>
+    </header>
+
+<div style="font-size: x-large; display:flex; justify-content: center; align-items: center; margin: 5em;" class="justify-content-center">
+    <section id="show-page">
+
+<form id="new-asteroid" action="http://localhost:3000/asteroids" method="POST">
+
+
+    <div class="form-row">
+    <div class="col-md-4 mb-3">
+    <label for="validationServer01">Name of the asteroid:</label>
+   
+    <!-- NAME -->
+    
+    
+    <button class="btn btn-outline-primary active" style="display: flex; width: 2000px; justify-content: center; margin-top: 0.5em; margin-bottom: 0.8em; font-size:xx-large;">
+        <input type="text" name="name">
+        
+    </button>
+
+
+    
+<br>
+    <label>Absolute Magnitude:</label>
+    <input type="number" step="0.01" name="magnitude">
+<br>
+    <label>Estimated Diameter:</label>
+    <input type="number" step="0.01" name="diameter">
+<br>
+    <label>Is potentially hazardous?</label>
+    <select name="hazardous">
+        <option value="true">Yes</option>
+        <option value="false">No</option>   
+    </select>
+<br>
+    <label>Date of approach</label>
+    <input type="date" name="date">
+<br>
+
+    <input type="submit" value="Add Asteroid">
+
+
+
+
+
+</div></div></form></section></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
