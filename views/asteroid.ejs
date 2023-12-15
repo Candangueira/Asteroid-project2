@@ -112,6 +112,7 @@
                 <div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
                  <%= date %> 
                 </div>
+
             </div>         
             </div>
             </div>
@@ -130,45 +131,106 @@
 <!-- USER ASTEROIDS  -->
 
 <div class="btn btn-outline-primary active"
-    style="display: flex; justify-content: center; margin-top: 5em; margin-bottom: 2em; font-size:xx-large;">
+    style="display: flex; justify-content: center; margin-top: 5em; margin-bottom: 1em; font-size:xx-large;">
     User's Asteroids
 </div>
 <br>
     <% userAddedAsteroids.forEach((asteroid)=> {  %>
     <br>
-    
-    <button style="display:inline-flex; margin-right: 3em; margin-left: 3em; padding: 1em; " type="button" class="btn btn-primary-outline">
-    
-    
 
+    <!-- AVATAR PICTURE -->
+
+<div style="display:inline-flex; margin-left: 6em; margin-right: 1em; margin-top: 1em;">
     
-            <div style="height:75%; padding: 1em;" class="mx-auto p-2 col-12 justify-content-center">
-   
-                <td class="asteroid-user">
-        <div>
-        <img class="justify-content-center" style=" border-radius: 50% ; " alt="avatar" src="<%= asteroid.userAvatar %>" referrerpolicy="no-referrer">
+    
+        <a href="/asteroids/<%=asteroid.id%>"><button style="padding: 1em; width: 500px; background-color: #030919f8;"
+                type="button" class="btn btn-primary-outline ">
+        
+                <div style="margin: 1em;" class="row">
+        
+                    <div style="padding: 1em;" class="mx-auto p-6 col-12 justify-content-center">
+        
+                        <img class="justify-content-center" style=" border-radius: 50%; width: 80px;margin-bottom: 0.2em;" alt="avatar" src="<%= asteroid.userAvatar%>" referrerpolicy="no-referrer">
         </div>
     </td>
     <h5 style="font-size: small;" class="profile-name">added by: <%= asteroid.userName %></h5>
+
+
+<!-- NAME -->
     <div class="user-asteroid">
-        <div class="d-grid gap-10 col-12 mx-auto"> <a href="/asteroids/<%=asteroid._id%>" class="btn btn-outline-dark">
-                <%= asteroid.name %></a>
+    <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid._id%>" class="btn btn-outline-primary active">
+            <%= asteroid.name %></a>
                 </div>
-        
-            <p>Magnitude: <div class="p-2 bg-light border"><%= asteroid.magnitude %></div></p>
+                    </div>
+    
+       
+<!-- MAGNITUDE  -->
 
-            <p>Diameter:<div class="p-2 bg-light border"> <%= asteroid.diameter %></div></p>
+    <div style="gap: 2px; margin-top: 1em;" class="d-grid row-1 justify-content-center">
+        <div style="display: flex; justify-content: center;" style="margin: 1em;" class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"><b>Magnitude</b></span>
+            </div>
+            <p style="display: inline-flex; ">
+            <div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
+                <%= asteroid.magnitude %>
+            </div>
+        </div>
 
-            <p>Is Hazardous?:<div class="p-2 bg-light border"><%= asteroid.hazardous %></div></p> 
+<!-- DIAMETER  -->
 
-            <p>Day it will be closest to the Earth: <div class="p-2 bg-light border"><%= asteroid.date.getUTCFullYear()+"-"+ asteroid.date.getUTCMonth()+ 1 +"-"+asteroid.date.getUTCDate(); %></div></p>
+<div style="display: flex; justify-content: center;" class="input-group mb-2">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"><b>Diameter</b></span>
+    </div>
+    <p style="display: inline-flex;">
+    <div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
+        <%= asteroid.diameter %> <b style="margin-left: 5px;"> meters </b>
+    </div>
+</div>
             
-             
-              
-         
+
+<!-- HAZARDOUS -->
+
+<div style="display: flex; justify-content: center;" class="input-group mb-2">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"><b>Is Hazardous?</b></span>
+    </div>
+    <p style="display: inline-flex;">
+
+
+        <!-- IF IS HAZARDOUS -->
+        <% if( asteroid.hazardous) { %>
+            <div style="display: inline-flex;" class="btn btn-underline p-12  bg-danger">
+            <b style="color: rgb(255, 255, 255)">
+                <%= asteroid.hazardous %>
+            </b>
+            
+</div>
+            <!-- IF IS NOT HAZARDOUS -->
+            <% } else { %>
+                <b style="color: rgb(0, 0, 0)">
+                    <div style="display: inline-flex;" class="btn btn-underline p-12  bg-success">
+                        <%= asteroid.hazardous %>
+                </b>
+                <% } %>
+
+</div>
+          
+<!-- DAY CLOSEST TO THE EARTH -->
+<div style="display: flex; justify-content: center;" class="input-group mb-2">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default"><b>Day it will be closest to the Earth</b></span>
+    </div>
+    <p style="display: inline-flex;">
+    <div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
+        <%= asteroid.date.getUTCFullYear()+"-" +asteroid.date.getUTCMonth()+1 +"-"+asteroid.date.getUTCDate(); %>
+             </div>      
+        
         </div>
         </div>
-         </div>
+        </div>
+        </div>
         </div>
     </div>
     
