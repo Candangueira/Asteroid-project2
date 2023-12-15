@@ -1,27 +1,98 @@
 <%- include ('./partials/header') %>
 
-    <form for="exampleFormControlInput1" class="form-label" id="new-asteroid" action="/asteroids/<%=asteroids.id%>?_method=PUT" method="POST">
-        <br>
-        <label>Name:</label>
-        <input type="text" name="name" value="<%= asteroids.name %>">
-        <br>
-        <label>Absolute Magnitude:</label>
-        <input type="number" step="0.01" name="magnitude" value="<%= asteroids.magnitude %>">
-        <br>
-        <label>Estimated Diameter:</label>
-        <input type="number" step="0.01" name="diameter" value="<%= asteroids.diameter %>">
-        <br>
-        <label>Is potentially hazardous?</label>
-        <select name="hazardous" value="<%= asteroids.hazardous %>">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-        <br>
-        <label>Date of approach</label>
-        <input type="date" name="date" value="<%= asteroids.date %>" required>
-        <br>
+<div style="font-size: x-large; display:flex; justify-content: center; align-items: center; margin: 5em; border: 5px"
+    class="justify-content-center">
+    <section id="show-page">
 
-        <input type="submit" value="Save Asteroid">
-    </form>
+
+        <h1 style="color:rgb(0, 102, 255)"><b> Edit asteroid </b></h1>
+
+        <form style="margin-top: 1em;" id="new-asteroid" action="/asteroids" method="POST">
+
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <form for="exampleFormControlInput1" class="form-label" id="new-asteroid"
+                        action="/asteroids/<%=asteroids.id%>?_method=PUT" method="POST">
+
+                    <!-- NAME -->
+
+
+                    <div class="input-group mb-3">
+                        <div style="display: inline-flex; width: 1000px;" class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Name:</span>
+                            <input value="<%= asteroids.name %>" style="display: flex; justify-content: center; margin-left: 38;" type="text"
+                                name="name" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                                required>
+                        </div>
+                    </div>
+
+
+
+                    <!-- MAGNITUDE -->
+
+
+
+                    <div class="input-group mb-3">
+                        <div style="display: inline-flex;" class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Absolute Magnitude:</span>
+                            <input value="<%= asteroids.magnitude %>" style="display: flex; justify-content: center; margin-left: 38;" type="number"
+                                step="0.01" name="magnitude" class="form-control" id="basic-url"
+                                aria-describedby="basic-addon3" required>
+                        </div>
+                    </div>
+
+
+
+                    <!-- DIAMETER -->
+
+                    <div>
+
+                        <div class="input-group mb-3">
+                            <div style="display: inline-flex;" class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Diameter:</span>
+                                <input value="<%= asteroids.diameter %>" style="display: flex; justify-content: center; margin-left: 38;" type="number"
+                                    step="0.01" name="diameter" class="form-control" id="basic-url"
+                                    aria-describedby="basic-addon3" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HAZARDOUS -->
+
+                    <div>
+
+                        <div class="input-group mb-3">
+                            <div style="display: inline-flex;" class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Is potentially hazardous?</span>
+                                <select value="<%= asteroids.hazardous %>" class="form-select" aria-label="Default select example" name="hazardous"
+                                    required>
+
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DATE -->
+
+                    <div>
+
+                        <div class="input-group mb-3">
+                            <div style="display: inline-flex;" class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Date of approach:</span>
+                                <input value="<%= asteroids.date %>" style="display: flex; justify-content: center; margin-left: 38;" type="date"
+                                    step="0.01" name="date" class="form-control" id="basic-url"
+                                    aria-describedby="basic-addon3" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input class="btn btn-outline-primary active" type="submit" value="Add Asteroid" required>
+        </form>
+
+</div>
 
     <%- include ('./partials/footer') %>
