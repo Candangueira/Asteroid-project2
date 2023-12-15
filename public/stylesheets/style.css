@@ -5,9 +5,15 @@
 }
 
 body {
-   background-image: url("./images/Galaxies.png");
+
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-image: url("/images/ringed_Earth.jpg"); 
+    background-repeat: no-repeat;
+    background-position: -10px -10px;
+    background-size: 2500px 1450px;
+    
 }
    
-a {
-    color: brown;
+p, h1, h2, h3, h5, h6 {
+    color: aliceblue;
 }

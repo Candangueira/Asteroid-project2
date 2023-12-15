@@ -4,7 +4,7 @@
 
 
 <div style="display: flex; justify-content: center; margin-top: 1em;">
-    <h3 style="font-size: xx-large;"> List of Asteroids </h3>
+    <h3 style="font-size: xx-large; margin-bottom: 1em; margin-top: 1em;"><b> List of Asteroids </b></h3>
 </div>
  <!-- Adds a specific date based on the closest approach to Earth -->
 
@@ -32,7 +32,7 @@
 <% dates.forEach((date)=> { %>
     <br>
     
-        <div class="btn btn-outline-primary" style="display: flex; justify-content: center; margin-top: 2.5em; margin-bottom: 2em; font-size:xx-large"><%=date %></div>
+        <div class="btn btn-outline-primary active" style="display: flex; justify-content: center; margin-top: 2.5em; margin-bottom: 2em; font-size:xx-large"><%=date %></div>
             <br> 
 
             <% asteroidsData[date].forEach((asteroid) => { %>
@@ -46,7 +46,7 @@
 
             <div style="padding: 1em;" class="mx-auto p-6 col-12 justify-content-center">
 
-             <img src="../images/NASA-Logo-Large.png" alt="nasa-logo">
+             <img style="width: 50px; margin" src="/images/NASA-Logo-Large.png" alt="nasa-logo">
         
                 <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
                 </div>
@@ -54,16 +54,17 @@
 
             <div style="gap: 2px;" class="d-grid row-1 justify-content-center">
             
-            <p>Magnitude:<div class="p-2 bg-light border"><%= asteroid.absolute_magnitude_h %></div>
+            <p>Magnitude:<div class="btn underline p-1 bg-light border"><%= asteroid.absolute_magnitude_h %></div>
             </p>
             
-            <p>Diameter:<div class="p-2 bg-light border"><%= asteroid.estimated_diameter.meters.estimated_diameter_min %></div>
+            <p>Diameter:<div class="btn underline p-1 bg-light border"><%= asteroid.estimated_diameter.meters.estimated_diameter_min %></div>
             </p>
 
-            <p>Is Hazardous?:<div class="p-2 bg-light border"> <%= asteroid.is_potentially_hazardous_asteroid %></div>
+            <p>Is Hazardous?:<div class="btn underline p-1 bg-light border"> <%= asteroid.is_potentially_hazardous_asteroid %></div>
             </p>
 
-            <p>Day it will be closest to the Earth: <div class="btn underline p-2 bg-light border"><%= date %></p></div>
+            <p>Day it will be closest to the Earth: <div class="btn underline p-1 bg-light border"><%= date %></p>
+            </div>
             </div>
 
 
