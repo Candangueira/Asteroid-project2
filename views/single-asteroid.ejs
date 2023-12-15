@@ -14,15 +14,31 @@
 
     <%asteroid.pictures.forEach((picture)=> { %>
     
-    <img src="<%= picture.link %>">
-    <p><%= picture.description %></p>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"></div>
 
     <!-- Deletes the picture and description of a specific asteroid -->
     
-    <form action="/asteroids/<%=asteroid._id%>/<%=picture._id%>/delete-img?_method=DELETE" method="POST">
-        <button type="submit" class="btn-close" aria-label="Close"></button>
-    </form>
-    
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+
+        <img class="d-block w-100" style="width:100%; height: 480px; object-fit: cover; object-position: bottom;" src="<%= picture.link %>" alt="First slide">
+        <form action="/asteroids/<%=asteroid._id%>/<%=picture._id%>/delete-img?_method=DELETE" method="POST">
+            <button style="display: flex; justify-content: end;" type="submit" class="btn-close" aria-label="Close"></button>
+        </form>
+        <p><%= picture.description %></p>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+   
     <% }); %>
 
 </div>
@@ -53,7 +69,7 @@
     
     <form id="add-img-description" method="POST" action="/asteroids/<%=asteroid._id%>">
         
-            <input type="url" name="link" class="form-control" id="floatingInputDisabled" placeholder="paste the image url here" disabled>
+            <input type="url" name="link" class="form-control" id="floatingInputDisabled" placeholder="paste the image url here" >
            
     <br>
         <div class="form-floating">
