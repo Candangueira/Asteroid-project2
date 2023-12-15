@@ -63,7 +63,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default"><b>Magnitude</b></span>
                     </div>
-                <p style="display: inline-flex; "><div style="display: inline-flex;" class="btn btn-underline p-12  bg-light border">
+                <p style="display: inline-flex; "><div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
                     <%= asteroid.absolute_magnitude_h %>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default"><b>Diameter</b></span>
                     </div>
-                <p style="display: inline-flex;"><div style="display: inline-flex;" class="btn btn-underline p-12  bg-light border">
+                <p style="display: inline-flex;"><div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
                     <%= asteroid.estimated_diameter.meters.estimated_diameter_min %> <b style="margin-left: 5px;"> meters </b> 
                 </div>
             </div>
@@ -86,15 +86,17 @@
                     <span class="input-group-text" id="inputGroup-sizing-default"><b>Is Hazardous?</b></span>
                 </div>
                 <p style="display: inline-flex;">
-                <div style="display: inline-flex;" class="btn btn-underline p-12  bg-light border">
+                
                     
                 <!-- IF IS HAZARDOUS -->
                     <% if(asteroid.is_potentially_hazardous_asteroid) { %>
-                    <b style="color: rgb(202, 45, 45)"><%= asteroid.is_potentially_hazardous_asteroid %></b>
+                    <div style="display: inline-flex;" class="btn btn-underline p-12  bg-danger"></div>
+                    <b style="color: rgb(255, 255, 255)"><%= asteroid.is_potentially_hazardous_asteroid %></b>
                     
                 <!-- IF IS NOT HAZARDOUS -->
                     <% } else { %>
-                    <b style="color: rgb(58, 190, 108)">
+                    <b style="color: rgb(0, 0, 0)">
+                        <div style="display: inline-flex;" class="btn btn-underline p-12  bg-success">
                         <%= asteroid.is_potentially_hazardous_asteroid %>
                     </b>
                     <% } %>
@@ -107,7 +109,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-default"><b>Day it will be closest to the Earth</b></span>
                 </div>
                 <p style="display: inline-flex;">
-                <div style="display: inline-flex;" class="btn btn-underline p-12  bg-light border">
+                <div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
                  <%= date %> 
                 </div>
             </div>         
@@ -125,6 +127,13 @@
 
 <!-- // USER ASTEROIDS // ------------------------------------------------------------------------> 
 
+<!-- USER ASTEROIDS  -->
+
+<div class="btn btn-outline-primary active"
+    style="display: flex; justify-content: center; margin-top: 5em; margin-bottom: 2em; font-size:xx-large;">
+    User's Asteroids
+</div>
+<br>
     <% userAddedAsteroids.forEach((asteroid)=> {  %>
     <br>
     
