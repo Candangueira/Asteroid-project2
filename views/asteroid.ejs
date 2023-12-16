@@ -234,7 +234,15 @@
                 </div>
                 <p style="display: inline-flex;">
                 <div style="display: inline-flex; color: aliceblue;" class="btn btn-underline p-12  bg-primary">
-                <%= asteroid.date.getUTCFullYear()+"-" +asteroid.date.getUTCMonth()+1 +"-"+asteroid.date.getUTCDate(); %>
+
+                <!-- FIX THE LEADING ZERO ISSUE   -->
+                <% let month = +asteroid.date.getUTCMonth(); %>
+                <% function fixedNum(num, places) { %>
+                  <%  let zero = places - num.toString().length + 1; %>
+                  <%    return Array(+(zero > 0 && zero)).join("0") + num; %>
+                  <% }; %>
+
+                <%= asteroid.date.getUTCFullYear()+"-"+ fixedNum(month+1, 2)+"-"+asteroid.date.getUTCDate(); %>
                 </div>
 
             </div>         

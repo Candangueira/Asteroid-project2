@@ -4,8 +4,8 @@ Project 1 of SEI, an Asteroids based game.
 
 # 💻 Click here to see my live project!
 
-[Asteroids Finder Project](https://github.com/Candangueira/Asteroid-project2)
-
+GitHub:[Asteroids Finder Project](https://github.com/Candangueira/Asteroid-project2)
+Render:[Asteroids Finder Render] (https://asteroids-project-2.onrender.com)
 # 📄 About
 
 How to use Asteroids Finder.
@@ -19,12 +19,13 @@ How to use Asteroids Finder.
 
 ## wireframe:
 
-![image](./wireframe-1.png)
+![image](./screenshots-wireframe/ERD.png)
 
 ## gameplay screenshots
 
-![image](./gameplay.png)
-![image](./gameover.png)
+![image](./screenshots-wireframe/screenshot1.png)
+![image](./screenshots-wireframe/screenshot2.png)
+![image](./screenshots-wireframe/screenshot3.png)
 
 # ✏️ Planning & Problem Solving
 
