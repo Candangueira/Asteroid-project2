@@ -30,9 +30,12 @@ How to use Asteroids Finder.
 
 ## Planning
 
--   The initial idea
--   SCORE VARIABLE
-- 
+-   The idea is to build an application where the user can look for asteroids that 
+are near the Earth. 
+-   You can search for asteroids nearby on NASA API using dates.
+-   You can add / delete / edit your own asteroids.
+-   You can add / delete pictures and descriptions of your own asteroids.
+-   You can login with a google account.
 
 # 🚀 Cool tech
 
@@ -40,19 +43,17 @@ Javascript, HTML, CSS, Express, MongoDB, Mongoose and Bootstrap .
 
 # 😱 Bugs to fix 💩
 
--   Bugs in the movement, diagonals goes faster than straight lines.
--   If you dont move the cursor it doesnt aims.
--   The collisions in the Asteroids are a bit off.
+-   The Months of the user it's interpolating like a string.
+
 
 # 😭 Lessons learnt
 
--   I would focus on the essencial parts first, and leave the details and optimization for later.
--   Nothing is as easy as it looks.
--   Sometimes taking a break can lead to breakthroughs in your project.
+-   Plan the UI before start the project.
+-   Learn about the technology that you want to use before start a project.
 
 # ✅ Future features
 
--   Add inercia.
+-   parallax effect.
 -   Splitting asteroids when hit by a projectile.
 -   Smoother movement.
 -   Main menu screen.
