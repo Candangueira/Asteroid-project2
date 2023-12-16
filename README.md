@@ -1,11 +1,11 @@
 # Asteroids Game
 
-Project 1 of SEI, an Asteroids based game.
+Project 2 of SEI, an Asteroids Finder Application.
 
 # 💻 Click here to see my live project!
 
 GitHub:[Asteroids Finder Project](https://github.com/Candangueira/Asteroid-project2)
-Render:[Asteroids Finder Render] (https://asteroids-project-2.onrender.com)
+Render:[Asteroids Finder Render](https://asteroids-project-2.onrender.com)
 # 📄 About
 
 How to use Asteroids Finder.
@@ -55,7 +55,7 @@ Javascript, HTML, CSS, Express, MongoDB, Mongoose and Bootstrap .
 # ✅ Future features
 
 -   parallax effect.
--   Splitting asteroids when hit by a projectile.
--   Smoother movement.
--   Main menu screen.
--   Adding difficulty.
+-   Animations.
+-   Custom Buttons with Bootstrap.
+-   Improve the layout / design.
+
