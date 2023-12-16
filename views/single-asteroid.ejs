@@ -99,7 +99,7 @@
     
     <div style="display: flex; justify-content: center; padding: 0.5em;" style="margin: 1em;" class="input-group mb-2">
         <div class="input-group-prepend">
-            <span style="width: 700px; font-size: 25px;" class="input-group-text"
+            <span style="width: 670px; font-size: 25px;" class="input-group-text"
                 id="inputGroup-sizing-default"><b>Date it will be close to Earth</b></span>
         </div>
         <p style="display: inline-flex; ">
@@ -117,7 +117,7 @@
         <form id="add-img-description" method="POST" action="/asteroids/<%=asteroid._id%>">
     
             <input type="url" name="link" class="form-control" id="floatingInputDisabled"
-                placeholder="paste the image url here">
+                placeholder="paste the image url here" required>
     
             <br>
             <div  class="form-floating">
@@ -147,18 +147,15 @@
 
         <img  style="display: inline-flex; width: 550px; height: 550px; object-fit: cover; justify-content: center; margin-left: 36%;" src="<%= picture.link %>" >
         
-        <form action="/asteroids/<%=asteroid._id%>/<%=picture._id%>/delete-img?_method=DELETE" method="POST">
-            <button style="display: flex; justify-content: center; margin-left: 30em;" type="submit" class="btn-close btn-close-white" aria-label="Close"></button>
+        <form style="display: flex; justify-content: center; margin-bottom: 1em;" action="/asteroids/<%=asteroid._id%>/<%=picture._id%>/delete-img?_method=DELETE" method="POST">
+            <!-- <button style="display: flex; justify-content: center; margin-left: 30em;" type="submit" class="btn-close btn-close-white" aria-label="Close"></button> -->
+            <button style="display: flex; justify-content: center; font-size: large; margin-top: 1em;" type="submit" name="delete-image"
+                class="btn btn-danger btn-lg">Delete</button>
         </form>
         <p style="display: flex; justify-content: center; margin-bottom: 2em; font-size: small;" ><%= picture.description %></p>
            
    
     <% }); %>
-
-
-
-    
-
 
    
 </section>

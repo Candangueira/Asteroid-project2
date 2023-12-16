@@ -168,14 +168,6 @@ async function show(req, res, next) {
 
     const nasaAsteroid = await nasaAsteroidsReq.json();
 
-    // try {
-    //     if (nasaAsteroidsReq.ok) {
-    //         return nasaAsteroid;
-    //     }
-    // } catch (err) {
-    //     console.log(err);
-    // }
-
     //
     res.render('nasa-single-asteroid.ejs', {
         asteroid: nasaAsteroid,
@@ -187,9 +179,14 @@ async function show(req, res, next) {
 // edit asteroid //
 async function editAsteroid(req, res) {
     const userAsteroid = await Asteroid.findById(req.params.id);
-    res.render('edit.ejs', {
-        asteroids: userAsteroid,
-    });
+    console.log();
+    if (req.user.name === userAsteroid.userName) {
+        res.render('edit.ejs', {
+            asteroids: userAsteroid,
+        });
+    } else {
+        res.redirect(`/asteroids/${req.params.id}`);
+    }
 }
 
 async function updateAsteroid(req, res) {
@@ -203,10 +200,13 @@ async function updateAsteroid(req, res) {
 // Find Asteroid to delete //
 async function findAsteroid(req, res) {
     const userAsteroid = await Asteroid.findById(req.params.id);
-
-    res.render('confirm-delete.ejs', {
-        asteroid: userAsteroid,
-    });
+    if (req.user.name === userAsteroid.userName) {
+        res.render('confirm-delete.ejs', {
+            asteroid: userAsteroid,
+        });
+    } else {
+        res.redirect(`/asteroids/${req.params.id}`);
+    }
 }
 
 async function deleteAsteroid(req, res) {

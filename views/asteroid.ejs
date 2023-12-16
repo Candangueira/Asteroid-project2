@@ -4,12 +4,15 @@
 
 
 <div style="display: flex; justify-content: center; margin-top: 1em;">
-    <h3 style="font-size: xx-large; margin-bottom: 1em; margin-top: 1em;"><b> List of Asteroids </b></h3>
+    <h3 style="font-size: 56px; margin-bottom: 1em; margin-top: 1em;"><b> List of Asteroids </b></h3>
 </div>
  <!-- Adds a specific date based on the closest approach to Earth -->
 
 <div style="display: flex; justify-content: center;">
-    <p class="justify-content-center">Select the date to retrieve a list os Asteroids based on their closest approach to Earth</p>
+    <pre style="color:rgb(254, 255, 255)" class="justify-content-center">Select the date to retrieve a list os Asteroids based on their closest approach to Earth.
+      <div style="color:rgb(216, 163, 48)"> ( Maximum 7 days from the initial date, otherwise it will be applied a default value ) </div>
+    </pre>
+    
 </div>
 
 <br>
@@ -66,7 +69,7 @@
                 
     <!-- ASTEROID NASA NAME -->
              
-                <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary active"><%= asteroid.name.slice(1,-1).replace('(',' ') %></a>
+                <div style="margin-bottom: 2em;" class="d-grid gap-2 col-12 mx-auto"><a href="/asteroids/<%=asteroid.id%>" class="btn btn-outline-primary"><b style="font-size: 25px;"><%= asteroid.name.slice(1,-1).replace('(',' ') %></b></a>
                 </div>
    
 
@@ -168,8 +171,8 @@
                     <img class="justify-content-center" style=" border-radius: 50%; width: 80px;margin-bottom: 0.2em;" alt="avatar"
                         src="<%= asteroid.userAvatar%>" referrerpolicy="no-referrer">
                     <div class="d-grid gap-2 col-12 mx-auto"> <a href="/asteroids/<%=asteroid._id%>"
-                            class="btn btn-outline-primary active">
-                            <%= asteroid.name %>
+                            class="btn btn-outline-primary">
+                            <b style="font-size: 25px;"><%= asteroid.name %></b>
                         </a>
                         
                     </div>
